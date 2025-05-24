@@ -11,11 +11,28 @@ from utils.ui import card, grid
 # Page title for sidebar
 st.set_page_config(page_title="Lekcje", page_icon="📚")
 
+# Import navigation utilities
+from utils.navigation import hide_streamlit_navigation, create_sidebar_navigation
+
+# Hide default navigation
+hide_streamlit_navigation()
+
 # Apply custom CSS
 css_path = os.path.join("static", "css", "style.css")
 if os.path.exists(css_path):
     with open(css_path, "r", encoding='utf-8') as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+# Import the horizontal submenu function
+from utils.navigation import create_horizontal_submenu
+
+# Add sidebar navigation
+create_sidebar_navigation("Lekcje")
+
+# Create horizontal submenu for lessons categories
+lesson_categories = ["Neurobiologia", "Emocje", "Podejmowanie decyzji", "Praktyka"]
+lesson_icons = ["diagram-3", "emoji-smile", "lightning", "gear"]
+active_category = create_horizontal_submenu("", lesson_categories, lesson_icons)
 
 # Page content
 st.title("📚 Lekcje")

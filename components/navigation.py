@@ -1,36 +1,14 @@
 import streamlit as st
 import os
+import sys
 
-def sidebar_menu():
-    """Display the sidebar navigation menu."""
-    with st.sidebar:
-        logo_path = os.path.join("static", "images", "brainventure_logo.png")
-        if os.path.exists(logo_path):
-            st.image(logo_path, width=200)
-        else:
-            st.title("BrainVenture")
-            
-        st.markdown("## BrainVenture")
-        st.markdown("### Program dla Neuroliderów")
-        
-        # Navigation menu
-        st.markdown("### Menu Główne")
-        
-        # Define menu options with icons using emoji or Unicode symbols
-        menu_options = {
-            "Dashboard": "🏠",
-            "Neuroleader Test": "📋",
-            "Lekcje": "📚",
-            "Profil": "👤"
-        }
-        
-        # Create navigation buttons
-        for page_name, icon in menu_options.items():
-            btn_style = "font-weight: bold; color: #FF4B4B;" if st.session_state.page == page_name else ""
-            if st.button(f"{icon} {page_name}", key=f"nav_{page_name}", use_container_width=True, 
-                        help=f"Przejdź do {page_name}"):
-                st.session_state.page = page_name
-                st.rerun()  # Force app to rerun with the new page
-        
-        st.markdown("---")
-        st.markdown("© 2025 BrainVenture")
+# Add the project root to the path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Import the navigation utilities instead
+from utils.navigation import create_sidebar_navigation
+
+def sidebar_menu(current_page=None):
+    """Display the sidebar navigation menu using the updated navigation system."""
+    # This now simply calls our centralized navigation system
+    create_sidebar_navigation(current_page)

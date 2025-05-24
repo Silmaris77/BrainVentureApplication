@@ -1,4 +1,70 @@
-# BrainVenture - Aplikacja dla Neuroliderów
+# BrainVenture - Program dla Neuroliderów
+
+## Opis projektu
+
+BrainVenture to aplikacja edukacyjna zbudowana w Streamlit, która skupia się na nauczaniu zasad neuroprzywództwa. Platforma oferuje interaktywne lekcje, testy oraz materiały edukacyjne z dziedziny neurobiologii i przywództwa.
+
+## Funkcjonalności
+
+- **Dashboard** - Przegląd postępów i aktualności
+- **Test Neuroliderstwa** - Test oceniający umiejętności neuroprzywódcze
+- **Lekcje** - Interaktywne materiały edukacyjne podzielone na moduły
+- **Profil użytkownika** - Dane użytkownika, postępy, certyfikaty i ustawienia
+
+## Struktura projektu
+
+```
+BrainVentureApp/
+├── Home.py                  # Strona główna aplikacji
+├── pages/                   # Podstrony aplikacji
+│   ├── 1_Dashboard.py       # Dashboard z przeglądem kursu
+│   ├── 2_Neuroleader_Test.py# Test Neuroliderstwa
+│   ├── 3_Lekcje.py          # Strona z lekcjami
+│   └── 4_Profil.py          # Profil użytkownika
+├── components/              # Komponenty UI
+├── config/                  # Pliki konfiguracyjne
+├── data/                    # Dane aplikacji
+│   └── content/             # Zawartość kursu w JSON
+├── static/                  # Zasoby statyczne
+│   ├── css/                 # Style CSS
+│   └── images/              # Obrazy
+└── utils/                   # Funkcje pomocnicze
+```
+
+## Nawigacja
+
+Aplikacja wykorzystuje centralizowany system nawigacji z dwoma głównymi elementami:
+
+1. **Pasek boczny (Sidebar)** - Zawiera główne menu nawigacyjne oraz opcjonalne filtry dla konkretnych stron
+2. **Menu kontekstowe** - Pojawia się na wybranych stronach, udostępniając dodatkowe filtry i opcje
+
+System nawigacji jest zarządzany przez moduł `utils/navigation.py`, który zapewnia spójny interfejs na wszystkich stronach.
+
+## Wymagania
+
+Zainstaluj wymagane pakiety:
+
+```
+pip install -r requirements.txt
+```
+
+## Uruchomienie aplikacji
+
+```
+streamlit run Home.py
+```
+
+## Rozwój projektu
+
+Aplikacja jest w fazie MVP (Minimum Viable Product). Planowane rozszerzenia:
+- System autentykacji użytkowników
+- Rozbudowana gamifikacja (odznaki, poziomy)
+- System analityki użytkownika
+- Integracja z zewnętrznymi zasobami edukacyjnymi
+
+## Licencja
+
+© 2025 BrainVenture. Wszelkie prawa zastrzeżone. - Aplikacja dla Neuroliderów
 
 BrainVenture to kompleksowa aplikacja kursowa stworzona dla osób pragnących rozwijać swoje umiejętności w zakresie neuroprzywództwa. Aplikacja łączy wiedzę z neurobiologii z praktycznymi umiejętnościami przywódczymi.
 

@@ -14,6 +14,12 @@ from utils.ui import card
 # Page title for sidebar
 st.set_page_config(page_title="Test Neuroliderstwa", page_icon="📋")
 
+# Import navigation utilities
+from utils.navigation import hide_streamlit_navigation, create_sidebar_navigation, create_horizontal_submenu
+
+# Hide default navigation
+hide_streamlit_navigation()
+
 # Apply custom CSS
 css_path = os.path.join("static", "css", "style.css")
 if os.path.exists(css_path):
@@ -207,6 +213,14 @@ def show_test_questions(questions):
     else:
         st.session_state.test_complete = True
         st.rerun()
+
+# Add sidebar navigation
+create_sidebar_navigation("Test")
+
+# Create horizontal submenu for test
+test_sections = ["Informacje", "Pytania", "Wyniki"]
+test_icons = ["info-circle", "question-circle", "graph-up"]
+active_test_section = create_horizontal_submenu("", test_sections, test_icons)
 
 # Main content
 st.title("Test Neuroliderstwa")

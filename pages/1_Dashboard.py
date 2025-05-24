@@ -46,11 +46,20 @@ def load_course_structure():
 # Page configuration
 st.set_page_config(page_title="Dashboard", page_icon="🏠", layout="wide")
 
+# Import navigation utilities
+from utils.navigation import hide_streamlit_navigation, create_sidebar_navigation
+
+# Hide default navigation
+hide_streamlit_navigation()
+
 # Apply custom CSS
 css_path = os.path.join("static", "css", "style.css")
 if os.path.exists(css_path):
     with open(css_path, "r", encoding='utf-8') as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+# Create sidebar navigation
+create_sidebar_navigation("Dashboard")
 
 # Page content
 st.title("🧠 BrainVenture - Program dla Neuroliderów")

@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import sys
+from streamlit_option_menu import option_menu
 
 # Set page config - MUSI być pierwszą komendą Streamlit!
 st.set_page_config(
@@ -12,8 +13,12 @@ st.set_page_config(
 # Add the project root to the path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-# Import configuration
+# Import configuration and utilities
 from config.app_config import APP_NAME, APP_DESCRIPTION, APP_ICON, UI_THEME
+from utils.navigation import hide_streamlit_navigation
+
+# Hide default Streamlit navigation
+hide_streamlit_navigation()
 
 # Apply custom CSS
 css_path = os.path.join("static", "css", "style.css")
@@ -23,14 +28,9 @@ if os.path.exists(css_path):
 else:
     st.warning(f"CSS file not found at {css_path}")
 
-# Ukryj etykietę "app" w sidebar
-st.markdown("""
-<style>
-    [data-testid="stSidebarNavItems"] li:first-child {
-        display: none;
-    }
-</style>
-""", unsafe_allow_html=True)
+# Initialize current_page in session state
+if "current_page" not in st.session_state:
+    st.session_state["current_page"] = "Home"
 
 # Main dashboard content
 st.title("🧠 BrainVenture - Program dla Neuroliderów")
@@ -58,6 +58,10 @@ st.markdown("---")
 
 st.markdown("### Co nowego")
 st.success("Nowa lekcja: Podstawy neurobiologii przywództwa już dostępna!")
+
+# Create the navigation sidebar with our utility
+from utils.navigation import create_sidebar_navigation
+create_sidebar_navigation("Home")
 
 # Display note about the sidebar navigation
 st.sidebar.markdown("### ⬅️ Menu nawigacyjne")

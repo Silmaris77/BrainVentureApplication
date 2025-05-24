@@ -11,6 +11,23 @@
     background-color: #f5f5f5;
 }
 
+/* Navigation styling */
+.nav-link {
+    font-size: 16px !important;
+    text-align: left !important;
+    margin: 0px !important;
+    border-radius: 5px !important;
+}
+
+.nav-link-selected {
+    background-color: #4a4a4a !important;
+    color: white !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stImage"] {
+    margin-bottom: 1rem;
+}
+
 /* Card styling */
 div[data-testid="stVerticalBlock"] > div {
     background-color: white;
