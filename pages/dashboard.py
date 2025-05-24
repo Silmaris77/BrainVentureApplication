@@ -1,0 +1,112 @@
+import streamlit as st
+from utils.ui import card, grid
+import os
+import json
+
+def show_dashboard():
+    """Display the dashboard page with course overview."""
+    st.title("🧠 BrainVenture - Program dla Neuroliderów")
+    st.markdown("""
+    Witaj w programie BrainVenture! To kompleksowy kurs neuroprzywództwa, 
+    który pomoże Ci rozwinąć umiejętności przywódcze w oparciu o najnowsze 
+    odkrycia z dziedziny neurobiologii.
+    """)
+    
+    # Progress card
+    st.markdown("### Twój postęp")
+    cols = st.columns([2, 1])
+    with cols[0]:
+        st.progress(0.05)
+        st.write("5% kursu ukończone")
+    with cols[1]:
+        st.metric(label="Ukończone lekcje", value="1/150")
+    
+    st.markdown("---")
+    
+    # Load course structure
+    course_structure = load_course_structure()
+    
+    # Display blocks
+    st.markdown("## Struktura kursu")
+    
+    for block_idx, block in enumerate(course_structure):
+        with st.expander(f"{block['emoji']} Blok {block_idx+1}: {block['title']}", expanded=block_idx==0):
+            st.markdown(f"### {block['title']}")
+            
+            for module_idx, module in enumerate(block['modules']):
+                st.markdown(f"#### Moduł {module_idx+1}: {module['title']}")
+                
+                # Create a grid of lesson cards
+                cols = st.columns(3)
+                for lesson_idx, lesson in enumerate(module['lessons']):
+                    col_idx = lesson_idx % 3
+                    with cols[col_idx]:
+                        st.markdown(f"""
+                        <div style="border:1px solid #ddd; padding:10px; border-radius:5px; margin-bottom:10px">
+                        <h5>{lesson_idx+1}. {lesson['title']}</h5>
+                        <div style="color:#888; font-size:0.8em;">
+                        {'✅ Ukończono' if lesson.get('completed', False) else '🔒 Zablokowane'}
+                        </div>
+                        </div>
+                        """, unsafe_allow_html=True)
+
+def load_course_structure():
+    """Load the course structure from a JSON file or return default structure."""
+    try:
+        with open(os.path.join("data", "content", "course_structure.json"), "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        # Return default structure (first block only for MVP)
+        return [
+            {
+                "emoji": "🔥",
+                "title": "Neurobiologia przywództwa",
+                "modules": [
+                    {
+                        "title": "🧠 Wprowadzenie do neuroprzywództwa",
+                        "lessons": [
+                            {"title": "Co to jest neuroprzywództwo?", "completed": True},
+                            {"title": "Mózg lidera – struktura i funkcje"},
+                            {"title": "Neuronaukowe podstawy podejmowania decyzji"},
+                            {"title": "Jak mózg przetwarza stres i zmienność?"},
+                            {"title": "Neurobiologia emocji a zarządzanie"},
+                            {"title": "Rola oksytocyny w przywództwie"},
+                            {"title": "Dopamina – motywacja i nagroda"},
+                            {"title": "Neuroprzywództwo a zarządzanie stresem"},
+                            {"title": "Przewodzenie w kontekście teorii neurobiologicznych"},
+                            {"title": "Neuroprzywództwo w praktyce – przykłady z życia"}
+                        ]
+                    },
+                    {
+                        "title": "💡 Mózg, emocje i decyzje",
+                        "lessons": [
+                            {"title": "Jak emocje wpływają na decyzje liderów?"},
+                            {"title": "Rola limbicznego układu w podejmowaniu decyzji"},
+                            {"title": "Przeciwdziałanie błędom poznawczym"},
+                            {"title": "Jak zrozumieć emocje w pracy zespołowej?"},
+                            {"title": "Mechanizmy adaptacji do stresu"},
+                            {"title": "Inteligencja emocjonalna lidera"},
+                            {"title": "Decyzje pod wpływem emocji a efektywność"},
+                            {"title": "Mózg a odporność na krytykę"},
+                            {"title": "Przykłady z życia liderów: jak radzili sobie z emocjami"},
+                            {"title": "Neurobiologia współczucia w przywództwie"}
+                        ]
+                    },
+                    {
+                        "title": "Mechanizmy mózgu w interakcjach społecznych",
+                        "lessons": [
+                            {"title": "Współczucie jako narzędzie przywódcze"},
+                            {"title": "Jak mózg interpretuje zachowanie innych?"},
+                            {"title": "Neurologiczne podstawy komunikacji"},
+                            {"title": "Zarządzanie konfliktem – mózg i emocje"},
+                            {"title": "Teoria przywództwa opartego na empatii"},
+                            {"title": "Mózg gadzi vs. racjonalny: jak to wpływa na decyzje?"},
+                            {"title": "Jak skutecznie motywować zespół?"},
+                            {"title": "Mechanizmy wpływu i perswazji"},
+                            {"title": "Neuroprzywództwo a budowanie relacji"},
+                            {"title": "Mózg a dynamika grupy"}
+                        ]
+                    }
+                ]
+            }
+        ]

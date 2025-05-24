@@ -1,0 +1,123 @@
+import streamlit as st
+import os
+from config.app_config import PRIMARY_COLOR, SECONDARY_COLOR, ACCENT_COLOR
+
+def set_page_config(page_title, page_icon, layout="wide"):
+    """Configure the Streamlit page with custom settings."""
+    st.set_page_config(
+        page_title=page_title,
+        page_icon=page_icon,
+        layout=layout,
+        initial_sidebar_state="expanded",
+        menu_items={
+            'Get Help': 'https://brainventure.example.com/help',
+            'Report a bug': "https://brainventure.example.com/bug",
+            'About': f"# {page_title}\nAplikacja do nauki neuroprzywództwa."
+        }
+    )
+
+def card(title, content, image_path=None, button_text=None, button_url=None, progress=None):
+    """Create a custom card component for the grid layout."""
+    with st.container():
+        cols = st.columns([1, 3])
+        
+        with cols[0]:
+            if image_path and os.path.exists(image_path):
+                st.image(image_path, use_column_width=True)
+            else:
+                st.markdown("📄")
+        
+        with cols[1]:
+            st.markdown(f"### {title}")
+            st.write(content)
+            
+            if progress is not None:
+                st.progress(progress)
+                st.write(f"{int(progress*100)}% ukończono")
+                
+            if button_text and button_url:
+                st.markdown(f"<a href='{button_url}' style='display: inline-block; padding: 8px 16px; background-color: {PRIMARY_COLOR}; color: white; text-decoration: none; border-radius: 4px;'>{button_text}</a>", unsafe_allow_html=True)
+
+def grid(items, num_columns=3):
+    """Create a grid layout with the specified number of columns."""
+    cols = st.columns(num_columns)
+    for i, item in enumerate(items):
+        with cols[i % num_columns]:
+            with st.container():
+                st.markdown(f"""
+                <div style="border: 1px solid #eee; border-radius: 10px; padding: 15px; margin-bottom: 15px; height: 100%;">
+                """, unsafe_allow_html=True)
+                
+                if "image" in item and item["image"] and os.path.exists(item["image"]):
+                    st.image(item["image"], use_column_width=True)
+                
+                st.markdown(f"### {item['title']}")
+                st.write(item["content"])
+                
+                if "progress" in item:
+                    st.progress(item["progress"])
+                    st.write(f"{int(item['progress']*100)}% ukończono")
+                
+                if "button_text" in item and "button_url" in item:
+                    st.markdown(f"<a href='{item['button_url']}' style='display: inline-block; padding: 8px 16px; background-color: {PRIMARY_COLOR}; color: white; text-decoration: none; border-radius: 4px;'>{item['button_text']}</a>", unsafe_allow_html=True)
+                
+                st.markdown("</div>", unsafe_allow_html=True)
+
+def info_box(title, content, box_type="info"):
+    """Create an information box with styled content.
+    
+    Args:
+        title: The title of the box
+        content: The content to display
+        box_type: The type of box (info, success, warning, error)
+    """
+    box_colors = {
+        "info": "#5bc0de",
+        "success": "#5cb85c",
+        "warning": "#f0ad4e",
+        "error": "#d9534f"
+    }
+    
+    color = box_colors.get(box_type, box_colors["info"])
+    
+    st.markdown(f"""
+    <div style="border-left: 5px solid {color}; background-color: rgba({','.join(str(int(c * 255)) for c in (0.95, 0.95, 0.95, 0.5))}); padding: 15px; border-radius: 5px;">
+        <h3 style="color: {color};">{title}</h3>
+        <div>{content}</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+def tabs_with_content(tabs_data):
+    """Create tabs with content.
+    
+    Args:
+        tabs_data: List of dictionaries with 'title' and 'content' keys
+    """
+    tabs = st.tabs([tab_data["title"] for tab_data in tabs_data])
+    
+    for i, tab in enumerate(tabs):
+        with tab:
+            st.markdown(tabs_data[i]["content"])
+
+def badge(text, badge_type="primary"):
+    """Create a badge with custom styling.
+    
+    Args:
+        text: Text to display in the badge
+        badge_type: Type of badge (primary, success, warning, danger, info)
+    """
+    badge_colors = {
+        "primary": PRIMARY_COLOR,
+        "success": ACCENT_COLOR,
+        "warning": "#f0ad4e",
+        "danger": "#d9534f",
+        "info": "#5bc0de"
+    }
+    
+    color = badge_colors.get(badge_type, badge_colors["primary"])
+    
+    return f"""
+    <span style="background-color: {color}; color: white; padding: 3px 8px; border-radius: 10px; font-size: 0.8em;">
+        {text}
+    </span>
+    """

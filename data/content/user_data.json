@@ -1,0 +1,35 @@
+{
+  "name": "Jan Kowalski",
+  "email": "jan.kowalski@example.com",
+  "join_date": "2025-05-20",
+  "progress": 5,
+  "skills": {
+    "self_awareness": 65,
+    "emotion_management": 45,
+    "decision_making": 70,
+    "empathy": 80,
+    "adaptability": 60
+  },
+  "badges": [
+    {
+      "icon": "🏆",
+      "title": "Pierwszy krok",
+      "description": "Ukończenie pierwszej lekcji"
+    },
+    {
+      "icon": "🧠",
+      "title": "Badacz umysłu",
+      "description": "Ukończenie testu Neuroliderstwa"
+    },
+    {
+      "icon": "⏱️",
+      "title": "Punktualność",
+      "description": "Logowanie przez 3 dni z rzędu"
+    }
+  ],
+  "preferences": {
+    "email_notifications": true,
+    "new_lesson_notifications": true,
+    "learning_reminders": false
+  }
+}
