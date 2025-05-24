@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_option_menu import option_menu
 import os
 
 def sidebar_menu():
@@ -15,15 +14,23 @@ def sidebar_menu():
         st.markdown("### Program dla Neuroliderów")
         
         # Navigation menu
-        selected = option_menu(
-            menu_title="Menu Główne",
-            options=["Dashboard", "Neuroleader Test", "Lekcje", "Profil"],
-            icons=["house", "clipboard-check", "book", "person"],
-            menu_icon="cast",
-            default_index=0,
-        )
+        st.markdown("### Menu Główne")
+        
+        # Define menu options with icons using emoji or Unicode symbols
+        menu_options = {
+            "Dashboard": "🏠",
+            "Neuroleader Test": "📋",
+            "Lekcje": "📚",
+            "Profil": "👤"
+        }
+        
+        # Create navigation buttons
+        for page_name, icon in menu_options.items():
+            btn_style = "font-weight: bold; color: #FF4B4B;" if st.session_state.page == page_name else ""
+            if st.button(f"{icon} {page_name}", key=f"nav_{page_name}", use_container_width=True, 
+                        help=f"Przejdź do {page_name}"):
+                st.session_state.page = page_name
+                st.rerun()  # Force app to rerun with the new page
         
         st.markdown("---")
         st.markdown("© 2025 BrainVenture")
-        
-    return selected

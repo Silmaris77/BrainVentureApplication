@@ -4,6 +4,7 @@ Helper utility functions for BrainVenture application.
 import os
 import json
 import datetime
+
 from typing import Dict, List, Any, Optional, Union
 
 def load_json_data(filepath: str, default: Optional[Any] = None) -> Any:
@@ -94,3 +95,8 @@ def slugify(text: str) -> str:
     text = text.strip('-')
     
     return text
+
+# Example usage
+if __name__ == "__main__":
+    print(slugify("Przykładowy tekst ze spacjami i Polskimi Znakami ĄĆĘ"))
+    # Powinno wyświetlić: "przykladowy-tekst-ze-spacjami-i-polskimi-znakami-ace"

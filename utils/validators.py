@@ -3,7 +3,7 @@ Form validation utilities for BrainVenture application.
 """
 import re
 import streamlit as st
-from typing import Dict, Any, Tuple, List, Optional
+from typing import Dict, Any, Tuple, List, Optional, Callable
 
 def validate_email(email: str) -> Tuple[bool, str]:
     """Validate an email address."""
@@ -41,7 +41,7 @@ def validate_required(value: Any, field_name: str) -> Tuple[bool, str]:
         return False, f"Pole '{field_name}' jest wymagane."
     return True, ""
 
-def validate_form(form_data: Dict[str, Any], validations: Dict[str, List[callable]]) -> Tuple[bool, Dict[str, str]]:
+def validate_form(form_data: Dict[str, Any], validations: Dict[str, List[Callable]]) -> Tuple[bool, Dict[str, str]]:
     """
     Validate form data against a set of validation functions.
     
@@ -73,7 +73,7 @@ def show_form_errors(errors: Dict[str, str]) -> None:
         error_text = "\n".join([f"- {message}" for field, message in errors.items()])
         st.error(f"Proszę poprawić następujące błędy:\n{error_text}")
         
-def create_validation_schema(form_fields: Dict[str, Dict[str, Any]]) -> Dict[str, List[callable]]:
+def create_validation_schema(form_fields: Dict[str, Dict[str, Any]]) -> Dict[str, List[Callable]]:
     """
     Create a validation schema from a form field definition.
     
