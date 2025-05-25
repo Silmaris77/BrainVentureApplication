@@ -1,24 +1,19 @@
 import streamlit as st
 import os
 import sys
-from streamlit_option_menu import option_menu
 
 # Set page config - MUSI być pierwszą komendą Streamlit!
 st.set_page_config(
-    page_title="Strona Główna",
-    page_icon="🏠",
+    page_title="BrainVenture",
+    page_icon="🧠",
     layout="wide"
 )
 
 # Add the project root to the path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-# Import configuration and utilities
-from config.app_config import APP_NAME, APP_DESCRIPTION, APP_ICON, UI_THEME
-from utils.navigation import hide_streamlit_navigation
-
-# Hide default Streamlit navigation
-hide_streamlit_navigation()
+# Automatyczne przekierowanie do Dashboard
+st.switch_page("pages/1_Dashboard.py")
 
 # Apply custom CSS
 css_path = os.path.join("static", "css", "style.css")

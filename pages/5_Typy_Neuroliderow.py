@@ -67,22 +67,46 @@ tab1, tab2, tab3 = st.tabs(["Przegląd Typów", "Test", "Twój Profil"])
 
 # Tab 1: Przegląd Typów
 with tab1:
-    st.markdown("# Typy Neuroliderów")
-    st.markdown("""
-    Poznaj 6 typów neuroliderów, które wyróżniamy w naszym podejściu do przywództwa opartym na neurobiologii.
-    Każdy z nas ma dominujący typ, ale wszyscy mamy cechy każdego z nich w różnym stopniu.
-    """)
-    
-    # Display all types in a grid
-    for i, type_info in enumerate(neuroleader_manager.get_all_types()):
-        with st.container():
-            st.markdown("---")
-            neuroleader_manager.render_type_card(type_info["id"])
-            
-            # Button to view details
-            if st.button(f"Poznaj szczegóły typu {type_info['name']}", key=f"btn_details_{i}"):
-                go_to_type_details(type_info["id"])
+    # Check if we're in type details view
+    if st.session_state.page == "type_details" and st.session_state.selected_type:
+        # Show type details
+        type_id = st.session_state.selected_type
+        type_info = neuroleader_manager.get_type_by_id(type_id)
+        
+        if type_info:
+            # Add back button
+            if st.button("← Powrót do przeglądu typów"):
+                go_to_overview()
                 st.rerun()
+                
+            # Show type header
+            st.markdown(f"# {type_info['icon']} {type_info['name']}")
+            
+            # Show full description
+            neuroleader_manager.render_full_description(type_id)
+        else:
+            st.error("Nie znaleziono informacji o wybranym typie.")
+            if st.button("Wróć do przeglądu typów"):
+                go_to_overview()
+                st.rerun()
+    else:
+        # Show overview of all types
+        st.markdown("# Typy Neuroliderów")
+        st.markdown("""
+        Poznaj 6 typów neuroliderów, które wyróżniamy w naszym podejściu do przywództwa opartym na neurobiologii.
+        Każdy z nas ma dominujący typ, ale wszyscy mamy cechy każdego z nich w różnym stopniu.
+        """)
+        
+        # Display all types in a grid
+        for i, type_info in enumerate(neuroleader_manager.get_all_types()):
+            with st.container():
+                st.markdown("---")
+                neuroleader_manager.render_type_card(type_info["id"])
+                
+                # Button to view details
+                if st.button(f"Poznaj szczegóły typu {type_info['name']}", key=f"btn_details_{i}"):
+                    go_to_type_details(type_info["id"])
+                    st.rerun()
 
 # Tab 2: Test
 with tab2:

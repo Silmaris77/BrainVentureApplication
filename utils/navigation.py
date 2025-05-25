@@ -50,7 +50,7 @@ def create_sidebar_navigation(current_page=None):
     """
     # If current_page is not set, try to get it from the session state
     if current_page is None:
-        current_page = st.session_state.get("current_page", "Home")
+        current_page = st.session_state.get("current_page", "Dashboard")
     
     # Store the current page in session state
     st.session_state["current_page"] = current_page
@@ -66,34 +66,50 @@ def create_sidebar_navigation(current_page=None):
         # Main navigation menu
         selected = option_menu(
             "Menu",
-            ["Home", "Dashboard", "Test", "Typy Neuroliderów", "Lekcje", "Profil"],
-            icons=["house-fill", "speedometer2", "clipboard-check", "people", "book", "person"],
+            ["Dashboard", "Test", "Typy Neuroliderów", "Lekcje", "Profil"],
+            icons=["speedometer2", "clipboard-check", "people", "book", "person"],
             menu_icon="brain",
             default_index=[
-                "Home", "Dashboard", "Test", "Typy Neuroliderów", "Lekcje", "Profil"
-            ].index(current_page) if current_page in ["Home", "Dashboard", "Test", "Typy Neuroliderów", "Lekcje", "Profil"] else 0,
+                "Dashboard", "Test", "Typy Neuroliderów", "Lekcje", "Profil"
+            ].index(current_page) if current_page in ["Dashboard", "Test", "Typy Neuroliderów", "Lekcje", "Profil"] else 0,
             key=f"main_navigation_{current_page}",
             styles={
                 "container": {"background-color": "#f0f0f0", "border-radius": "10px", "padding": "10px"},
                 "icon": {"color": "orange", "font-size": "20px"},
-                "nav-link": {"font-size": "16px", "text-align": "left", "margin":"0px", "border-radius": "5px"},
-                "nav-link-selected": {"background-color": "#4a4a4a", "color": "white"},
+                "nav-link": {
+                    "font-size": "16px", 
+                    "text-align": "left", 
+                    "margin":"0px 0px 8px 0px",  # Dodane marginesy między przyciskami
+                    "padding": "8px 12px",  # Zwiększone wypełnienie
+                    "border-radius": "8px",  # Bardziej zaokrąglone rogi
+                    "box-shadow": "0 2px 4px rgba(0,0,0,0.1)",  # Dodany cień
+                    "background-color": "#ffffff",  # Białe tło dla przycisków
+                    "transition": "transform 0.2s, box-shadow 0.2s"  # Dodane animacje
+                },
+                "nav-link-selected": {
+                    "background-color": "#4a4a4a", 
+                    "color": "white",
+                    "box-shadow": "0 3px 5px rgba(0,0,0,0.2)",  # Mocniejszy cień dla aktywnego elementu
+                    "transform": "translateY(-2px)"  # Lekkie uniesienie przycisku
+                },
+                "nav-link:hover": {
+                    "background-color": "#f8f8f8",  # Jaśniejsze tło przy najechaniu
+                    "transform": "translateY(-2px)",  # Lekkie uniesienie przycisku
+                    "box-shadow": "0 4px 6px rgba(0,0,0,0.15)"  # Mocniejszy cień przy najechaniu
+                }
             }
         )
         
         # Handle navigation based on selection
         if selected != current_page:
             try:
-                # Dla strony głównej
-                if selected == "Home":
-                    st.switch_page("Home.py")
                 # Dla stron w katalogu pages/ używamy ścieżki "pages/nazwa_pliku.py"
-                elif selected == "Dashboard":
+                if selected == "Dashboard":
                     st.switch_page("pages/1_Dashboard.py")
                 elif selected == "Test":
                     st.switch_page("pages/2_Neuroleader_Test.py")
                 elif selected == "Typy Neuroliderów":
-                    st.switch_page("pages/5_Typy_Neuroliderow_fixed.py")
+                    st.switch_page("pages/5_Typy_Neuroliderow.py")
                 elif selected == "Lekcje":
                     st.switch_page("pages/3_Lekcje.py")
                 elif selected == "Profil":
@@ -113,8 +129,26 @@ def create_sidebar_navigation(current_page=None):
                 styles={
                     "container": {"background-color": "#f0f0f0", "border-radius": "10px", "padding": "5px"},
                     "icon": {"color": "#4a4a4a", "font-size": "16px"},
-                    "nav-link": {"font-size": "14px", "text-align": "left", "margin":"0px", "border-radius": "5px"},
-                    "nav-link-selected": {"background-color": "orange", "color": "white"},
+                    "nav-link": {
+                        "font-size": "14px", 
+                        "text-align": "left", 
+                        "margin":"0px 0px 6px 0px", 
+                        "padding": "6px 10px", 
+                        "border-radius": "6px", 
+                        "background-color": "#ffffff",
+                        "box-shadow": "0 1px 3px rgba(0,0,0,0.05)",
+                        "transition": "all 0.2s"
+                    },
+                    "nav-link-selected": {
+                        "background-color": "orange", 
+                        "color": "white",
+                        "box-shadow": "0 2px 4px rgba(0,0,0,0.1)",
+                        "transform": "translateY(-1px)"
+                    },
+                    "nav-link:hover": {
+                        "background-color": "#fffaf0",
+                        "transform": "translateY(-1px)"
+                    }
                 }
             )
             
@@ -128,8 +162,26 @@ def create_sidebar_navigation(current_page=None):
                 styles={
                     "container": {"background-color": "#f0f0f0", "border-radius": "10px", "padding": "5px"},
                     "icon": {"color": "#4a4a4a", "font-size": "16px"},
-                    "nav-link": {"font-size": "14px", "text-align": "left", "margin":"0px", "border-radius": "5px"},
-                    "nav-link-selected": {"background-color": "orange", "color": "white"},
+                    "nav-link": {
+                        "font-size": "14px", 
+                        "text-align": "left", 
+                        "margin":"0px 0px 6px 0px", 
+                        "padding": "6px 10px", 
+                        "border-radius": "6px", 
+                        "background-color": "#ffffff",
+                        "box-shadow": "0 1px 3px rgba(0,0,0,0.05)",
+                        "transition": "all 0.2s"
+                    },
+                    "nav-link-selected": {
+                        "background-color": "orange", 
+                        "color": "white",
+                        "box-shadow": "0 2px 4px rgba(0,0,0,0.1)",
+                        "transform": "translateY(-1px)"
+                    },
+                    "nav-link:hover": {
+                        "background-color": "#fffaf0",
+                        "transform": "translateY(-1px)"
+                    }
                 }
             )
         
@@ -145,8 +197,26 @@ def create_sidebar_navigation(current_page=None):
                 styles={
                     "container": {"background-color": "#f0f0f0", "border-radius": "10px", "padding": "5px"},
                     "icon": {"color": "#4a4a4a", "font-size": "16px"},
-                    "nav-link": {"font-size": "14px", "text-align": "left", "margin":"0px", "border-radius": "5px"},
-                    "nav-link-selected": {"background-color": "orange", "color": "white"},
+                    "nav-link": {
+                        "font-size": "14px", 
+                        "text-align": "left", 
+                        "margin":"0px 0px 6px 0px", 
+                        "padding": "6px 10px", 
+                        "border-radius": "6px", 
+                        "background-color": "#ffffff",
+                        "box-shadow": "0 1px 3px rgba(0,0,0,0.05)",
+                        "transition": "all 0.2s"
+                    },
+                    "nav-link-selected": {
+                        "background-color": "orange", 
+                        "color": "white",
+                        "box-shadow": "0 2px 4px rgba(0,0,0,0.1)",
+                        "transform": "translateY(-1px)"
+                    },
+                    "nav-link:hover": {
+                        "background-color": "#fffaf0",
+                        "transform": "translateY(-1px)"
+                    }
                 }
             )
             
@@ -182,11 +252,23 @@ def create_horizontal_submenu(title, options, icons, default_index=0):
             "nav-link": {
                 "font-size": "14px", 
                 "text-align": "center", 
-                "margin": "0px", 
+                "margin": "0px 3px", 
                 "padding": "10px", 
-                "border-radius": "5px"
+                "border-radius": "8px",
+                "background-color": "#f8f8f8",
+                "transition": "all 0.2s ease",
+                "box-shadow": "0 1px 3px rgba(0,0,0,0.05)"
             },
-            "nav-link-selected": {"background-color": "#4a4a4a", "color": "white"},
+            "nav-link-selected": {
+                "background-color": "#4a4a4a", 
+                "color": "white",
+                "box-shadow": "0 2px 4px rgba(0,0,0,0.2)"
+            },
+            "nav-link:hover": {
+                "background-color": "#f0f0f0",
+                "transform": "translateY(-1px)",
+                "box-shadow": "0 2px 4px rgba(0,0,0,0.1)"
+            }
         }
     )
     
