@@ -21,7 +21,7 @@ def hide_streamlit_navigation():
         
         /* Maintain sidebar width when default navigation is hidden */
         section[data-testid="stSidebar"] > div {
-            width: 16rem !important;
+            width: 20rem !important;
         }
         
         /* Hide hamburger menu */
