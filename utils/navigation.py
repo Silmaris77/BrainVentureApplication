@@ -93,7 +93,7 @@ def create_sidebar_navigation(current_page=None):
                 elif selected == "Test":
                     st.switch_page("pages/2_Neuroleader_Test.py")
                 elif selected == "Typy Neuroliderów":
-                    st.switch_page("pages/5_Typy_Neuroliderow.py")
+                    st.switch_page("pages/5_Typy_Neuroliderow_fixed.py")
                 elif selected == "Lekcje":
                     st.switch_page("pages/3_Lekcje.py")
                 elif selected == "Profil":
