@@ -154,14 +154,13 @@ if has_results and results is not None:  # Upewniamy się, że results nie jest 
             st.markdown(dominant_type['short_description'])
         
         st.markdown(f"**Supermoc:** {dominant_type.get('supermoc', '')}")
-        
-        # Dodaj informację o historii testów jeśli istnieje
+          # Dodaj informację o historii testów jeśli istnieje
         if has_saved_results and len(test_history) > 1:
             st.info(f"Masz {len(test_history)} zapisanych testów Neuroliderstwa w swoim profilu!")
         
         # Przyciski do szczegółowych informacji
         col1, col2 = st.columns([1, 1])
-        with col1:
+        with col1:            
             if st.button("Zobacz szczegółowy profil"):
                 # Link do strony z typami neuroliderów
                 st.switch_page("pages/5_Typy_Neuroliderow_fixed.py")
@@ -173,12 +172,11 @@ if has_results and results is not None:  # Upewniamy się, że results nie jest 
                 st.switch_page("pages/5_Typy_Neuroliderow_fixed.py")
     else:
         st.info("Ups! Nie udało się załadować Twojego typu neuroliderskiego.")
-else:
-    # Użytkownik nie ma jeszcze wyników testu
+else:    # Użytkownik nie ma jeszcze wyników testu
     st.info("Nie wykonałeś jeszcze testu typologii neuroliderów!")
     if st.button("Wykonaj test teraz"):
         # Link do strony z testem
-        st.switch_page("pages/5_Typy_Neuroliderow_fixed.py")
+        st.switch_page("pages/5_Typy_Neuroliderow.py")
 
 # What's new
 st.markdown("---")

@@ -31,5 +31,177 @@
     "email_notifications": true,
     "new_lesson_notifications": true,
     "learning_reminders": false
-  }
+  },
+  "neuroleader_tests": [
+    {
+      "dominant_type": "neuroanalityk",
+      "secondary_type": "neuroinnowator",
+      "scores": {
+        "neuroanalityk": 85,
+        "neurobalanser": 60,
+        "neuroempata": 55,
+        "neuroinnowator": 75,
+        "neuroinspirator": 45,
+        "neuroreaktor": 30
+      },
+      "answers": {
+        "1": 4,
+        "2": 5,
+        "3": 3
+      },
+      "date": "2025-05-25 13:01:43"
+    },
+    {
+      "dominant_type": "neuroanalityk",
+      "secondary_type": "neuroinnowator",
+      "scores": {
+        "neuroanalityk": 85,
+        "neurobalanser": 60,
+        "neuroempata": 55,
+        "neuroinnowator": 75,
+        "neuroinspirator": 45,
+        "neuroreaktor": 30
+      },
+      "answers": {
+        "1": 4,
+        "2": 5,
+        "3": 3
+      },
+      "date": "2025-05-25 12:56:04"
+    },
+    {
+      "dominant_type": "neuroanalityk",
+      "secondary_type": "neuroinnowator",
+      "scores": {
+        "neuroanalityk": 85,
+        "neurobalanser": 60,
+        "neuroempata": 55,
+        "neuroinnowator": 75,
+        "neuroinspirator": 45,
+        "neuroreaktor": 30
+      },
+      "answers": {
+        "1": 4,
+        "2": 5,
+        "3": 3
+      },
+      "date": "2025-05-25 12:46:58"
+    },
+    {
+      "dominant_type": "neuroanalityk",
+      "secondary_type": "neuroinnowator",
+      "scores": {
+        "neuroanalityk": 85,
+        "neurobalanser": 60,
+        "neuroempata": 55,
+        "neuroinnowator": 75,
+        "neuroinspirator": 45,
+        "neuroreaktor": 30
+      },
+      "answers": {
+        "1": 4,
+        "2": 5,
+        "3": 3
+      },
+      "date": "2025-05-25 12:43:52"
+    },
+    {
+      "dominant_type": "neuroanalityk",
+      "secondary_type": "neuroinnowator",
+      "scores": {
+        "neuroanalityk": 85,
+        "neurobalanser": 60,
+        "neuroempata": 55,
+        "neuroinnowator": 75,
+        "neuroinspirator": 45,
+        "neuroreaktor": 30
+      },
+      "answers": {
+        "1": 4,
+        "2": 5,
+        "3": 3
+      },
+      "date": "2025-05-25 12:07:24"
+    },
+    {
+      "dominant_type": "neuroanalityk",
+      "secondary_type": "neuroinnowator",
+      "scores": {
+        "neuroanalityk": 85,
+        "neurobalanser": 60,
+        "neuroempata": 55,
+        "neuroinnowator": 75,
+        "neuroinspirator": 45,
+        "neuroreaktor": 30
+      },
+      "answers": {
+        "1": 4,
+        "2": 5,
+        "3": 3
+      },
+      "date": "2025-05-25 12:02:28"
+    },
+    {
+      "dominant_type": "neuroanalityk",
+      "secondary_type": "neuroinnowator",
+      "scores": {
+        "neuroanalityk": 85,
+        "neurobalanser": 60,
+        "neuroempata": 55,
+        "neuroinnowator": 75,
+        "neuroinspirator": 45,
+        "neuroreaktor": 30
+      },
+      "answers": {
+        "1": 4,
+        "2": 5,
+        "3": 3
+      },
+      "date": "2025-05-25 11:59:16"
+    },
+    {
+      "date": "2025-05-25 09:35:15",
+      "dominant_type": "neurobalanser",
+      "secondary_type": "neuroempata",
+      "tertiary_type": "neuroinspirator",
+      "scores": {
+        "neuroanalityk": 3.2,
+        "neuroreaktor": 2.8,
+        "neurobalanser": 4.5,
+        "neuroempata": 4.2,
+        "neuroinnowator": 3.7,
+        "neuroinspirator": 4.0
+      },
+      "interpretations": {
+        "neuroanalityk": "Średni wynik",
+        "neuroreaktor": "Średni wynik",
+        "neurobalanser": "Wysoki wynik",
+        "neuroempata": "Wysoki wynik",
+        "neuroinnowator": "Wysoki wynik",
+        "neuroinspirator": "Wysoki wynik"
+      }
+    },
+    {
+      "date": "2025-05-20 14:22:41",
+      "dominant_type": "neuroempata",
+      "secondary_type": "neurobalanser",
+      "tertiary_type": "neuroinspirator",
+      "scores": {
+        "neuroanalityk": 2.9,
+        "neuroreaktor": 2.5,
+        "neurobalanser": 4.2,
+        "neuroempata": 4.4,
+        "neuroinnowator": 3.4,
+        "neuroinspirator": 3.8
+      },
+      "interpretations": {
+        "neuroanalityk": "Średni wynik",
+        "neuroreaktor": "Średni wynik",
+        "neurobalanser": "Wysoki wynik",
+        "neuroempata": "Wysoki wynik",
+        "neuroinnowator": "Średni wynik",
+        "neuroinspirator": "Wysoki wynik"
+      }
+    }
+  ]
 }

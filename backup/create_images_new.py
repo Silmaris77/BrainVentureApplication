@@ -49,19 +49,25 @@ def create_neuroleader_type_images():
     # Create the directory if it doesn't exist
     neuroleader_img_dir = os.path.join("static", "images", "neuroleader_types")
     os.makedirs(neuroleader_img_dir, exist_ok=True)
-    
-    # Load neuroleader types data
+      # Load neuroleader types data
     types_data = load_neuroleader_types()
+    print(f"Loaded {len(types_data)} neuroleader types")
     
     # Create images for each type
     for type_info in types_data:
         type_id = type_info["id"]
+        print(f"Creating images for {type_id}...")
         
-        # Create main image
-        create_type_main_image(type_id, type_info, neuroleader_img_dir)
-        
-        # Create brain activity visualization
-        create_type_brain_image(type_id, type_info, neuroleader_img_dir)
+        try:
+            # Create main image
+            main_img_path = create_type_main_image(type_id, type_info, neuroleader_img_dir)
+            print(f"  - Created main image: {main_img_path}")
+            
+            # Create brain activity visualization
+            brain_img_path = create_type_brain_image(type_id, type_info, neuroleader_img_dir)
+            print(f"  - Created brain image: {brain_img_path}")
+        except Exception as e:
+            print(f"Error creating images for {type_id}: {e}")
     
     print("Neuroleader type images created successfully!")
 
@@ -133,8 +139,10 @@ def create_type_brain_image(type_id, type_info, output_dir):
     # Fill brain shape
     ax.fill_between(brain_x, brain_bottom, brain_top, color='#e0e0e0')
     
+    # Default title
+    title = f"Aktywność mózgu: {type_id}"
+    
     # Add activation areas based on type
-    title = None
     if type_id == "neuroanalityk":
         # Prefrontal cortex activation (low)
         ax.fill_between([7, 9.5], [6, 7], [7, 7.5], color='#3498db', alpha=0.5)
@@ -175,15 +183,12 @@ def create_type_brain_image(type_id, type_info, output_dir):
         # Anterior cingulate cortex (high)
         ax.fill_between([6, 8], [4.5, 4.5], [6, 6], color='#f1c40f', alpha=0.7)
         title = "Wysoka aktywność układu limbicznego i przedniej kory zakrętu obręczy"
-      # Remove axes
+    
+    # Remove axes
     ax.axis('off')
     
     # Add title
-    if 'title' in locals() and title:
-        plt.title(title)
-    else:
-        plt.title(f"Aktywność mózgu: {type_id}")
-    
+    plt.title(title)
     plt.tight_layout()
     
     # Save the image

@@ -1,4 +1,4 @@
-﻿"""
+"""
 Navigation utilities for the BrainVenture app.
 """
 import streamlit as st
@@ -61,17 +61,17 @@ def create_sidebar_navigation(current_page=None):
         if os.path.exists(logo_path):
             st.image(logo_path, width=150)
         else:
-            st.title(" BrainVenture")
+            st.title("🧠 BrainVenture")
         
         # Main navigation menu
         selected = option_menu(
             "Menu",
-            ["Home", "Dashboard", "Test", "Typy Neuroliderów", "Lekcje", "Profil"],
-            icons=["house-fill", "speedometer2", "clipboard-check", "people", "book", "person"],
+            ["Home", "Dashboard", "Test", "Lekcje", "Profil"],
+            icons=["house-fill", "speedometer2", "clipboard-check", "book", "person"],
             menu_icon="brain",
             default_index=[
-                "Home", "Dashboard", "Test", "Typy Neuroliderów", "Lekcje", "Profil"
-            ].index(current_page) if current_page in ["Home", "Dashboard", "Test", "Typy Neuroliderów", "Lekcje", "Profil"] else 0,
+                "Home", "Dashboard", "Test", "Lekcje", "Profil"
+            ].index(current_page) if current_page in ["Home", "Dashboard", "Test", "Lekcje", "Profil"] else 0,
             key=f"main_navigation_{current_page}",
             styles={
                 "container": {"background-color": "#f0f0f0", "border-radius": "10px", "padding": "10px"},
@@ -92,8 +92,6 @@ def create_sidebar_navigation(current_page=None):
                     st.switch_page("pages/1_Dashboard.py")
                 elif selected == "Test":
                     st.switch_page("pages/2_Neuroleader_Test.py")
-                elif selected == "Typy Neuroliderów":
-                    st.switch_page("pages/5_Typy_Neuroliderow.py")
                 elif selected == "Lekcje":
                     st.switch_page("pages/3_Lekcje.py")
                 elif selected == "Profil":
