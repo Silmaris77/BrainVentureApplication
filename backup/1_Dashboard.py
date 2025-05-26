@@ -27,38 +27,38 @@ hide_streamlit_navigation()
 initialize_theme()
 
 # Function to load course structure
-def load_course_structure():
-    """Load the course structure from the JSON file."""
-    try:
-        file_path = os.path.join("data", "content", "course_structure.json")
-        with open(file_path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception as e:
-        st.error(f"Nie udało się wczytać struktury kursu: {e}")
-        # Return default structure (first block only for MVP)
-        return [
-            {
-                "emoji": "🔥",
-                "title": "Neurobiologia przywództwa",
-                "modules": [
-                    {
-                        "title": "🧠 Wprowadzenie do neuroprzywództwa",
-                        "lessons": [
-                            {"title": "Co to jest neuroprzywództwo?", "completed": True},
-                            {"title": "Mózg lidera – struktura i funkcje"},
-                            {"title": "Neuronaukowe podstawy podejmowania decyzji"},
-                            {"title": "Jak mózg przetwarza stres i zmienność?"},
-                            {"title": "Neurobiologia emocji a zarządzanie"},
-                            {"title": "Rola oksytocyny w przywództwie"},
-                            {"title": "Dopamina – motywacja i nagroda"},
-                            {"title": "Neuroprzywództwo a zarządzanie stresem"},
-                            {"title": "Przewodzenie w kontekście teorii neurobiologicznych"},
-                            {"title": "Neuroprzywództwo w praktyce – przykłady z życia"}
-                        ]
-                    }
-                ]
-            }
-        ]
+# def load_course_structure():
+#     """Load the course structure from the JSON file."""
+#     try:
+#         file_path = os.path.join("data", "content", "course_structure.json")
+#         with open(file_path, "r", encoding="utf-8") as f:
+#             return json.load(f)
+#     except Exception as e:
+#         st.error(f"Nie udało się wczytać struktury kursu: {e}")
+#         # Return default structure (first block only for MVP)
+#         return [
+#             {
+#                 "emoji": "🔥",
+#                 "title": "Neurobiologia przywództwa",
+#                 "modules": [
+#                     {
+#                         "title": "🧠 Wprowadzenie do neuroprzywództwa",
+#                         "lessons": [
+#                             {"title": "Co to jest neuroprzywództwo?", "completed": True},
+#                             {"title": "Mózg lidera – struktura i funkcje"},
+#                             {"title": "Neuronaukowe podstawy podejmowania decyzji"},
+#                             {"title": "Jak mózg przetwarza stres i zmienność?"},
+#                             {"title": "Neurobiologia emocji a zarządzanie"},
+#                             {"title": "Rola oksytocyny w przywództwie"},
+#                             {"title": "Dopamina – motywacja i nagroda"},
+#                             {"title": "Neuroprzywództwo a zarządzanie stresem"},
+#                             {"title": "Przewodzenie w kontekście teorii neurobiologicznych"},
+#                             {"title": "Neuroprzywództwo w praktyce – przykłady z życia"}
+#                         ]
+#                     }
+#                 ]
+#             }
+#         ]
 
 # Create sidebar navigation
 create_sidebar_navigation("Dashboard")
@@ -192,7 +192,7 @@ course_structure = load_course_structure()
 
 # Display the course structure with a card-based grid layout
 for i, block in enumerate(course_structure):
-    with st.expander(f"{block.get('emoji', '📚')} {block['title']}", expanded=i==0):
+    with st.expander(f"{block.get('emoji', '📚')} {block['title']}", expanded=False):
         for j, module in enumerate(block['modules']):
             st.subheader(f"{module['title']}")
             
