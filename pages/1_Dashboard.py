@@ -60,7 +60,7 @@ def load_course_structure():
                             {"title": "Neuronaukowe podstawy podejmowania decyzji"},
                             {"title": "Jak mózg przetwarza stres i zmienność?"},
                             {"title": "Neurobiologia emocji a zarządzanie"},
-                            {"title": "Rola oksytocyny w przywództwie"},
+                            {"title": "R ola oksytocyny w przywództwie"},
                             {"title": "Dopamina – motywacja i nagroda"},
                             {"title": "Neuroprzywództwo a zarządzanie stresem"},
                             {"title": "Przewodzenie w kontekście teorii neurobiologicznych"},
@@ -196,32 +196,10 @@ st.markdown("---")
 st.markdown("### Co nowego")
 st.success("Nowa lekcja: Podstawy neurobiologii przywództwa już dostępna!")
 
-# Course structure
+# Link do pełnej struktury kursu
 st.markdown("---")
 st.markdown("### Struktura kursu")
+st.markdown("Zobacz pełną strukturę kursu wraz z wszystkimi modułami i lekcjami")
 
-# Load and display the course structure
-course_structure = load_course_structure()
-
-# Display the course structure with a card-based grid layout
-for i, block in enumerate(course_structure):
-    with st.expander(f"{block.get('emoji', '📚')} {block['title']}", expanded=i==0):
-        for j, module in enumerate(block['modules']):
-            st.subheader(f"{module['title']}")
-            
-            # Create a grid for lessons
-            lesson_columns = st.columns(3)
-            for k, lesson in enumerate(module['lessons']):
-                with lesson_columns[k % 3]:
-                    completed = lesson.get('completed', False)
-                    status = "✅ Ukończono" if completed else "🔒 Dostępne wkrótce"
-                    color = "#1c6e42" if completed else "#4a4a4a"
-                    
-                    st.markdown(f"""
-                    <div style="border:1px solid #ddd; padding:15px; border-radius:8px; margin-bottom:15px; background-color:{'#f0f9f4' if completed else '#f7f7f7'}">
-                        <h5 style="margin-top:0">{k+1}. {lesson['title']}</h5>
-                        <div style="color:{color}; font-size:0.8em; margin-top:8px">
-                            {status}
-                        </div>
-                    </div>
-                    """, unsafe_allow_html=True)
+if st.button("Przejdź do struktury kursu", key="course_structure_btn"):
+    st.switch_page("pages/8_Struktura_Kursu.py")

@@ -2,124 +2,75 @@
 Moduł zarządzający motywami (theme) w aplikacji BrainVenture.
 """
 import streamlit as st
-
-# Dostępne motywy
-THEMES = {
-    "light": {
-        "primaryColor": "#1c6e42",
-        "secondaryColor": "#90c8ac",
-        "backgroundColor": "#ffffff",
-        "textColor": "#333333",
-    },
-    "dark": {
-        "primaryColor": "#38b676",
-        "secondaryColor": "#90c8ac",
-        "backgroundColor": "#121212",
-        "textColor": "#f1f1f1",
-    },
-    "blue": {
-        "primaryColor": "#0077b6",
-        "secondaryColor": "#90e0ef",
-        "backgroundColor": "#f5f5ff",
-        "textColor": "#333333",
-    },
-    "purple": {
-        "primaryColor": "#8338ec",
-        "secondaryColor": "#c8b6ff",
-        "backgroundColor": "#f5f0ff",
-        "textColor": "#333333",
-    }
-}
+from utils.theme_provider import ThemeProvider, UITheme
 
 def initialize_theme():
-    """
-    Inicjalizuje motyw aplikacji. Sprawdza, czy użytkownik wybrał motyw i aplikuje go.
-    """
-    # Ustaw domyślny motyw jeśli nie został wybrany
-    if 'theme' not in st.session_state:
+    """Initialize the theme in the session state"""
+    if "theme" not in st.session_state:
         st.session_state.theme = "light"
-    
-    # Aplikuj motyw z session state
-    apply_theme(st.session_state.theme)
-
-def apply_theme(theme_name):
-    """
-    Aplikuje wybrany motyw do interfejsu Streamlit.
-    
-    Args:
-        theme_name: Nazwa motywu do aplikowania
-    """
-    theme = THEMES.get(theme_name, THEMES["light"])
-    
-    # Aplikuj kolory CSS
-    custom_css = f"""
-    <style>
-        :root {{
-            --primary-color: {theme["primaryColor"]};
-            --secondary-color: {theme["secondaryColor"]};
-            --background-color: {theme["backgroundColor"]};
-            --text-color: {theme["textColor"]};
-        }}
-        
-        .stApp {{
-            background-color: var(--background-color);
-            color: var(--text-color);
-        }}
-        
-        .stButton>button, div.stButton button {{
-            background-color: var(--primary-color);
-            color: white;
-        }}
-        
-        .stProgress .st-bo {{
-            background-color: var(--primary-color);
-        }}
-        
-        h1, h2, h3, h4, h5, h6 {{
-            color: var(--primary-color);
-        }}
-    </style>
-    """
-    st.markdown(custom_css, unsafe_allow_html=True)
-
-def create_theme_switcher(container):
-    """
-    Tworzy interfejs do wyboru motywu.
-    
-    Args:
-        container: Container Streamlit, w którym ma być wyświetlony przełącznik motywów
-    
-    Returns:
-        bool: True jeśli motyw został zmieniony, False w przeciwnym razie
-    """
-    theme_changed = False
-    current_theme = st.session_state.get('theme', 'light')
-    
-    theme_options = {
-        "light": "☀️ Jasny",
-        "dark": "🌙 Ciemny",
-        "blue": "🔵 Niebieski",
-        "purple": "🟣 Fioletowy"
-    }
-    
-    selected_theme = container.selectbox(
-        "Wybierz motyw",
-        options=list(theme_options.keys()),
-        format_func=lambda x: theme_options[x],
-        index=list(theme_options.keys()).index(current_theme)
-    )
-    
-    if selected_theme != current_theme:
-        st.session_state.theme = selected_theme
-        theme_changed = True
-    
-    return theme_changed
+    if "layout" not in st.session_state:
+        st.session_state.layout = "material3"
+    if "theme_just_changed" not in st.session_state:
+        st.session_state.theme_just_changed = False
 
 def get_current_theme():
+    """Get the current theme from session state"""
+    return st.session_state.get("theme", "light")
+
+def get_current_layout():
+    """Get the current layout from session state"""
+    return st.session_state.get("layout", "material3")
+
+def set_theme(theme):
+    """Set the theme in session state"""
+    st.session_state.theme = theme
+    st.session_state.theme_just_changed = True
+
+def set_layout(layout):
+    """Set the layout in session state"""
+    st.session_state.layout = layout
+    st.session_state.theme_just_changed = True
+
+def create_theme_switcher(container=None):
     """
-    Zwraca nazwę aktualnie używanego motywu.
+    Create a theme switcher component.
+    Returns True if theme was changed.
+    """
+    if container is None:
+        container = st
+
+    theme_changed = False
     
-    Returns:
-        str: Nazwa aktualnie używanego motywu
-    """
-    return st.session_state.get('theme', 'light')
+    # Kolor motywu (Jasny/Ciemny)
+    container.markdown("#### Wybierz motyw")
+    theme_cols = container.columns(2)
+    
+    with theme_cols[0]:
+        if st.button("🌞 Jasny", use_container_width=True, 
+                   type="primary" if st.session_state.theme == "light" else "secondary"):
+            set_theme("light")
+            theme_changed = True
+            
+    with theme_cols[1]:
+        if st.button("🌙 Ciemny", use_container_width=True,
+                   type="primary" if st.session_state.theme == "dark" else "secondary"):
+            set_theme("dark")
+            theme_changed = True
+    
+    # Layout (Material/Fluent)
+    container.markdown("#### Wybierz layout (układ)")
+    layout_cols = container.columns(2)
+    
+    with layout_cols[0]:
+        if st.button("Material 3", use_container_width=True,
+                   type="primary" if st.session_state.layout == "material3" else "secondary"):
+            set_layout("material3")
+            theme_changed = True
+            
+    with layout_cols[1]:
+        if st.button("Fluent", use_container_width=True,
+                   type="primary" if st.session_state.layout == "fluent" else "secondary"):
+            set_layout("fluent")
+            theme_changed = True
+    
+    return theme_changed

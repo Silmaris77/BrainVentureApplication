@@ -5,6 +5,7 @@ import streamlit as st
 import os
 from streamlit_option_menu import option_menu
 from utils.theme_provider import ThemeProvider, UITheme
+from components.theme_switcher import get_current_theme, get_current_layout
 
 def hide_streamlit_navigation():
     """Hide the default Streamlit navigation sidebar and top menu."""
@@ -64,15 +65,15 @@ def create_sidebar_navigation(current_page=None):
         else:
             st.title(" BrainVenture")
         
-        # Main navigation menu
+        # Main navigation menu - usunięto "Lekcje" i "Ustawienia"
         selected = option_menu(
             "Menu",
-            ["Dashboard", "Test", "Typy Neuroliderów", "Lekcje", "Profil"],
-            icons=["speedometer2", "clipboard-check", "people", "book", "person"],
+            ["Dashboard", "Profil", "Typy Neuroliderów", "Struktura Kursu"],
+            icons=["speedometer2", "person-circle", "lightbulb", "list-check"],
             menu_icon="brain",
             default_index=[
-                "Dashboard", "Test", "Typy Neuroliderów", "Lekcje", "Profil"
-            ].index(current_page) if current_page in ["Dashboard", "Test", "Typy Neuroliderów", "Lekcje", "Profil"] else 0,
+                "Dashboard", "Profil", "Typy Neuroliderów", "Struktura Kursu"
+            ].index(current_page) if current_page in ["Dashboard", "Profil", "Typy Neuroliderów", "Struktura Kursu"] else 0,
             key=f"main_navigation_{current_page}",
             styles={
                 "container": {"background-color": "#f0f0f0", "border-radius": "10px", "padding": "10px"},
@@ -80,23 +81,23 @@ def create_sidebar_navigation(current_page=None):
                 "nav-link": {
                     "font-size": "16px", 
                     "text-align": "left", 
-                    "margin":"0px 0px 8px 0px",  # Dodane marginesy między przyciskami
-                    "padding": "8px 12px",  # Zwiększone wypełnienie
-                    "border-radius": "8px",  # Bardziej zaokrąglone rogi
-                    "box-shadow": "0 2px 4px rgba(0,0,0,0.1)",  # Dodany cień
-                    "background-color": "#ffffff",  # Białe tło dla przycisków
-                    "transition": "transform 0.2s, box-shadow 0.2s"  # Dodane animacje
+                    "margin":"0px 0px 8px 0px",
+                    "padding": "8px 12px",
+                    "border-radius": "8px",
+                    "box-shadow": "0 2px 4px rgba(0,0,0,0.1)",
+                    "background-color": "#ffffff",
+                    "transition": "transform 0.2s, box-shadow 0.2s"
                 },
                 "nav-link-selected": {
                     "background-color": "#4a4a4a", 
                     "color": "white",
-                    "box-shadow": "0 3px 5px rgba(0,0,0,0.2)",  # Mocniejszy cień dla aktywnego elementu
-                    "transform": "translateY(-2px)"  # Lekkie uniesienie przycisku
+                    "box-shadow": "0 3px 5px rgba(0,0,0,0.2)",
+                    "transform": "translateY(-2px)"
                 },
                 "nav-link:hover": {
-                    "background-color": "#f8f8f8",  # Jaśniejsze tło przy najechaniu
-                    "transform": "translateY(-2px)",  # Lekkie uniesienie przycisku
-                    "box-shadow": "0 4px 6px rgba(0,0,0,0.15)"  # Mocniejszy cień przy najechaniu
+                    "background-color": "#f8f8f8",
+                    "transform": "translateY(-2px)",
+                    "box-shadow": "0 4px 6px rgba(0,0,0,0.15)"
                 }
             }
         )
@@ -107,84 +108,14 @@ def create_sidebar_navigation(current_page=None):
                 # Dla stron w katalogu pages/ używamy ścieżki "pages/nazwa_pliku.py"
                 if selected == "Dashboard":
                     st.switch_page("pages/1_Dashboard.py")
-                elif selected == "Test":
-                    st.switch_page("pages/2_Neuroleader_Test.py")
-                elif selected == "Typy Neuroliderów":
-                    st.switch_page("pages/5_Typy_Neuroliderow.py")
-                elif selected == "Lekcje":
-                    st.switch_page("pages/3_Lekcje.py")
                 elif selected == "Profil":
                     st.switch_page("pages/4_Profil.py")
+                elif selected == "Typy Neuroliderów":
+                    st.switch_page("pages/5_Typy_Neuroliderow.py")
+                elif selected == "Struktura Kursu":
+                    st.switch_page("pages/8_Struktura_Kursu.py")
             except Exception as e:
                 st.error(f"Nie można przejść do strony {selected}: {e}")
-                
-        # Only show filters for lessons page
-        if current_page == "Lekcje":
-            st.markdown("---")
-            filtry = option_menu(
-                "Filtruj lekcje",
-                ["Wszystkie", "Ukończone", "Do zrobienia", "Zablokowane"],
-                icons=["grid", "check-circle", "hourglass", "lock"],
-                key=f"lekcje_filtry_{current_page}",
-                default_index=0,
-                styles={
-                    "container": {"background-color": "#f0f0f0", "border-radius": "10px", "padding": "5px"},
-                    "icon": {"color": "#4a4a4a", "font-size": "16px"},
-                    "nav-link": {
-                        "font-size": "14px", 
-                        "text-align": "left", 
-                        "margin":"0px 0px 6px 0px", 
-                        "padding": "6px 10px", 
-                        "border-radius": "6px", 
-                        "background-color": "#ffffff",
-                        "box-shadow": "0 1px 3px rgba(0,0,0,0.05)",
-                        "transition": "all 0.2s"
-                    },
-                    "nav-link-selected": {
-                        "background-color": "orange", 
-                        "color": "white",
-                        "box-shadow": "0 2px 4px rgba(0,0,0,0.1)",
-                        "transform": "translateY(-1px)"
-                    },
-                    "nav-link:hover": {
-                        "background-color": "#fffaf0",
-                        "transform": "translateY(-1px)"
-                    }
-                }
-            )
-            
-            # Create category filter for lessons
-            kategoria = option_menu(
-                "Kategorie",
-                ["Neurobiologia", "Emocje", "Podejmowanie Decyzji"],
-                icons=["diagram-3", "emoji-smile", "lightning"],
-                key=f"lekcje_kategorie_{current_page}",
-                default_index=0,
-                styles={
-                    "container": {"background-color": "#f0f0f0", "border-radius": "10px", "padding": "5px"},
-                    "icon": {"color": "#4a4a4a", "font-size": "16px"},
-                    "nav-link": {
-                        "font-size": "14px", 
-                        "text-align": "left", 
-                        "margin":"0px 0px 6px 0px", 
-                        "padding": "6px 10px", 
-                        "border-radius": "6px", 
-                        "background-color": "#ffffff",
-                        "box-shadow": "0 1px 3px rgba(0,0,0,0.05)",
-                        "transition": "all 0.2s"
-                    },
-                    "nav-link-selected": {
-                        "background-color": "orange", 
-                        "color": "white",
-                        "box-shadow": "0 2px 4px rgba(0,0,0,0.1)",
-                        "transform": "translateY(-1px)"
-                    },
-                    "nav-link:hover": {
-                        "background-color": "#fffaf0",
-                        "transform": "translateY(-1px)"
-                    }
-                }
-            )
         
         # Add profile tabs if on Profile page
         elif current_page == "Profil":
@@ -284,43 +215,49 @@ def create_layout_switcher():
     Creates a layout switcher interface in the sidebar.
     Allows users to switch between different UI layouts (Material3, Fluent, etc.)
     """
-    # Initialize ui_theme if not present in session_state
-    ThemeProvider.initialize()
+    theme = get_current_theme()
+    layout = get_current_layout()
     
-    st.markdown("### Wybierz layout (układ)")
+    st.markdown(f"Aktualny motyw: **{theme}**")
+    st.markdown(f"Aktualny układ: **{layout}**")
     
     # Create container with 2 rows of 2 buttons for better UI
     row1, row2 = st.columns(2), st.columns(2)
     
-    # Debug: show current theme
-    st.markdown(f"Current theme: **{ThemeProvider.get_current_theme().name}**")
-    
     # First row - Material3 and Fluent
     with row1[0]:
         if st.button("Material", use_container_width=True, 
-                   type="primary" if ThemeProvider.get_current_theme() == UITheme.MATERIAL3 else "secondary",
+                   type="primary" if layout == "material3" else "secondary",
                    key="btn_material"):
-            ThemeProvider.set_theme(UITheme.MATERIAL3)
+            # ThemeProvider.set_theme(UITheme.MATERIAL3)  # stara wersja
+            st.session_state.layout = "material3"  # nowa wersja
+            st.session_state.theme_just_changed = True
             st.rerun()
             
     with row1[1]:
         if st.button("Fluent", use_container_width=True, 
-                   type="primary" if ThemeProvider.get_current_theme() == UITheme.FLUENT else "secondary",
+                   type="primary" if layout == "fluent" else "secondary",
                    key="btn_fluent"):
-            ThemeProvider.set_theme(UITheme.FLUENT)
+            # ThemeProvider.set_theme(UITheme.FLUENT)  # stara wersja
+            st.session_state.layout = "fluent"  # nowa wersja
+            st.session_state.theme_just_changed = True
             st.rerun()
     
     # Second row - Default and Neuro
     with row2[0]:
         if st.button("Default", use_container_width=True, 
-                   type="primary" if ThemeProvider.get_current_theme() == UITheme.DEFAULT else "secondary",
+                   type="primary" if layout == "default" else "secondary",
                    key="btn_default"):
-            ThemeProvider.set_theme(UITheme.DEFAULT)
+            # ThemeProvider.set_theme(UITheme.DEFAULT)  # stara wersja
+            st.session_state.layout = "default"  # nowa wersja
+            st.session_state.theme_just_changed = True
             st.rerun()
             
     with row2[1]:
         if st.button("Neuro", use_container_width=True, 
-                   type="primary" if ThemeProvider.get_current_theme() == UITheme.NEURO else "secondary",
+                   type="primary" if layout == "neuro" else "secondary",
                    key="btn_neuro"):
-            ThemeProvider.set_theme(UITheme.NEURO)
+            # ThemeProvider.set_theme(UITheme.NEURO)  # stara wersja
+            st.session_state.layout = "neuro"  # nowa wersja
+            st.session_state.theme_just_changed = True
             st.rerun()
