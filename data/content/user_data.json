@@ -35,6 +35,50 @@
   "neuroleader_tests": [
     {
       "scores": {
+        "neuroanalityk": 2.8,
+        "neuroreaktor": 2.4,
+        "neurobalanser": 3.0,
+        "neuroempata": 2.2,
+        "neuroinnowator": 3.2,
+        "neuroinspirator": 3.2
+      },
+      "dominant_type": "neuroinnowator",
+      "secondary_type": "neuroinspirator",
+      "tertiary_type": "neurobalanser",
+      "interpretations": {
+        "neuroanalityk": "Cenisz dokładną analizę i ocenę ryzyka, choć potrafisz podejmować decyzje bez nadmiernej zwłoki.",
+        "neuroreaktor": "Potrafisz podejmować szybkie decyzje w sytuacjach kryzysowych, choć nie zawsze reagujesz impulsywnie.",
+        "neurobalanser": "Potrafisz zachować równowagę między analizą a intuicją, choć czasem skłaniasz się ku jednemu podejściu.",
+        "neuroempata": "Dostrzegasz wartość dobrych relacji w zespole, choć nie zawsze priorytetyzujesz aspekt emocjonalny.",
+        "neuroinnowator": "Jesteś otwarty na zmiany i innowacje, choć zachowujesz równowagę między nowatorskimi a sprawdzonymi metodami.",
+        "neuroinspirator": "Potrafisz inspirować innych, choć nie zawsze jest to Twój główny sposób oddziaływania na zespół."
+      },
+      "date": "2025-05-26 14:14:37"
+    },
+    {
+      "scores": {
+        "neuroanalityk": 2.8,
+        "neuroreaktor": 3.0,
+        "neurobalanser": 3.0,
+        "neuroempata": 2.6,
+        "neuroinnowator": 2.6,
+        "neuroinspirator": 2.6
+      },
+      "dominant_type": "neuroreaktor",
+      "secondary_type": "neurobalanser",
+      "tertiary_type": "neuroanalityk",
+      "interpretations": {
+        "neuroanalityk": "Cenisz dokładną analizę i ocenę ryzyka, choć potrafisz podejmować decyzje bez nadmiernej zwłoki.",
+        "neuroreaktor": "Potrafisz podejmować szybkie decyzje w sytuacjach kryzysowych, choć nie zawsze reagujesz impulsywnie.",
+        "neurobalanser": "Potrafisz zachować równowagę między analizą a intuicją, choć czasem skłaniasz się ku jednemu podejściu.",
+        "neuroempata": "Dostrzegasz wartość dobrych relacji w zespole, choć nie zawsze priorytetyzujesz aspekt emocjonalny.",
+        "neuroinnowator": "Jesteś otwarty na zmiany i innowacje, choć zachowujesz równowagę między nowatorskimi a sprawdzonymi metodami.",
+        "neuroinspirator": "Potrafisz inspirować innych, choć nie zawsze jest to Twój główny sposób oddziaływania na zespół."
+      },
+      "date": "2025-05-26 14:08:43"
+    },
+    {
+      "scores": {
         "neuroanalityk": 4.0,
         "neuroreaktor": 2.8,
         "neurobalanser": 2.4,

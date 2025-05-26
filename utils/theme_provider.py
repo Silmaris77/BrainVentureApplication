@@ -116,7 +116,7 @@ class ThemeProvider:
     def _apply_material3_theme():
         st.markdown("""
         <style>
-        /* Material 3 Design System - BARDZIEJ WYRAZISTE */
+        /* Material 3 Design System - SIDEBAR STYLING */
         body {
             background-color: #E8F0FE !important;
         }
@@ -125,6 +125,48 @@ class ThemeProvider:
             background-color: #E8F0FE !important;
         }
         
+        /* Sidebar styling */
+        [data-testid="stSidebar"] {
+            background-color: #F5EEFF !important;
+        }
+        
+        [data-testid="stSidebar"] > div {
+            background-color: #F5EEFF !important;
+            border-radius: 16px;
+            margin: 10px;
+            padding: 20px;
+        }
+        
+        /* Sidebar navigation menu */
+        [data-testid="stSidebar"] .nav-link {
+            border-radius: 12px !important;
+            margin: 4px 0 !important;
+            transition: all 0.2s ease !important;
+        }
+        
+        [data-testid="stSidebar"] .nav-link.active {
+            background-color: #6750A4 !important;
+            color: white !important;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.1) !important;
+        }
+        
+        [data-testid="stSidebar"] .nav-link:hover:not(.active) {
+            background-color: rgba(103, 80, 164, 0.1) !important;
+        }
+        
+        /* Logo container */
+        [data-testid="stSidebar"] > div:first-child {
+            background-color: transparent !important;
+            padding-bottom: 1rem !important;
+        }
+        
+        /* Horizontal separators */
+        [data-testid="stSidebar"] hr {
+            border-color: rgba(103, 80, 164, 0.2) !important;
+            margin: 1rem 0 !important;
+        }
+        
+        /* Main content styling */
         .main .block-container {
             background-color: white;
             padding: 3rem;
@@ -133,7 +175,7 @@ class ThemeProvider:
             margin: 1rem;
         }
         
-        /* Apply Material 3 styles */
+        /* Apply Material 3 styles to buttons */
         .stButton > button {
             background-color: #6750A4 !important;
             color: white !important;
@@ -147,13 +189,6 @@ class ThemeProvider:
         h1, h2, h3 {
             color: #6750A4 !important;
         }
-        
-        div[data-testid="stSidebar"] > div {
-            background-color: #F5EEFF !important;
-            border-radius: 16px;
-            margin: 10px;
-            padding: 20px;
-        }
         </style>
         """, unsafe_allow_html=True)
     
@@ -161,7 +196,7 @@ class ThemeProvider:
     def _apply_fluent_theme():
         st.markdown("""
         <style>
-        /* Fluent Design System - BARDZIEJ WYRAZISTE */
+        /* Fluent Design System - SIDEBAR STYLING */
         body {
             background-color: #FAFAFA !important;
         }
@@ -170,6 +205,47 @@ class ThemeProvider:
             background-color: #FAFAFA !important;
         }
         
+        /* Sidebar styling */
+        [data-testid="stSidebar"] {
+            background-color: #F3F2F1 !important;
+        }
+        
+        [data-testid="stSidebar"] > div {
+            background-color: #F3F2F1 !important;
+            border-right: 1px solid rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        /* Sidebar navigation menu */
+        [data-testid="stSidebar"] .nav-link {
+            border-radius: 2px !important;
+            margin: 2px 0 !important;
+            transition: all 0.1s ease !important;
+        }
+        
+        [data-testid="stSidebar"] .nav-link.active {
+            background-color: #0078D4 !important;
+            color: white !important;
+            font-weight: 400 !important;
+        }
+        
+        [data-testid="stSidebar"] .nav-link:hover:not(.active) {
+            background-color: rgba(0, 120, 212, 0.1) !important;
+        }
+        
+        /* Logo container */
+        [data-testid="stSidebar"] > div:first-child {
+            background-color: transparent !important;
+            padding-bottom: 1rem !important;
+        }
+        
+        /* Horizontal separators */
+        [data-testid="stSidebar"] hr {
+            border-color: rgba(0, 0, 0, 0.1) !important;
+            margin: 1rem 0 !important;
+        }
+        
+        /* Main content styling */
         .main .block-container {
             background-color: white;
             padding: 2rem;
@@ -178,7 +254,7 @@ class ThemeProvider:
             margin: 1rem;
         }
         
-        /* Apply Fluent styles */
+        /* Apply Fluent styles to buttons */
         .stButton > button {
             background-color: #0078D4 !important;
             color: white !important;
@@ -191,11 +267,6 @@ class ThemeProvider:
         h1, h2, h3 {
             color: #0078D4 !important;
         }
-        
-        div[data-testid="stSidebar"] > div {
-            background-color: #F3F2F1 !important;
-            border-right: 1px solid rgba(0,0,0,0.1);
-        }
         </style>
         """, unsafe_allow_html=True)
     
@@ -204,7 +275,7 @@ class ThemeProvider:
         # Reset to default Streamlit styling if needed
         st.markdown("""
         <style>
-        /* Reset to default styles */
+        /* Default Theme - SIDEBAR STYLING */
         body {
             background-color: white !important;
         }
@@ -213,6 +284,32 @@ class ThemeProvider:
             background-color: white !important;
         }
         
+        /* Reset sidebar styling */
+        [data-testid="stSidebar"] > div {
+            background-color: #f0f2f6 !important;
+            border-radius: 0;
+            margin: 0;
+            padding: 1rem;
+        }
+        
+        /* Sidebar navigation menu */
+        [data-testid="stSidebar"] .nav-link {
+            border-radius: 4px !important;
+            margin: 3px 0 !important;
+        }
+        
+        [data-testid="stSidebar"] .nav-link.active {
+            background-color: #f63366 !important;
+            color: white !important;
+        }
+        
+        /* Horizontal separators */
+        [data-testid="stSidebar"] hr {
+            border-color: rgba(0, 0, 0, 0.1) !important;
+            margin: 0.5rem 0 !important;
+        }
+        
+        /* Main content styling */
         .main .block-container {
             background-color: white;
             padding: 1rem;
@@ -237,7 +334,7 @@ class ThemeProvider:
     def _apply_neuro_theme():
         st.markdown("""
         <style>
-        /* Neuro Design System - BARDZIEJ WYRAZISTE */
+        /* Neuro Design System - SIDEBAR STYLING */
         body {
             background-color: #FBE9E7 !important;
         }
@@ -246,6 +343,49 @@ class ThemeProvider:
             background-color: #FBE9E7 !important;
         }
         
+        /* Sidebar styling */
+        [data-testid="stSidebar"] {
+            background-color: #FFCCBC !important;
+        }
+        
+        [data-testid="stSidebar"] > div {
+            background-color: #FFCCBC !important;
+            border-radius: 12px;
+            margin: 10px;
+            padding: 15px;
+        }
+        
+        /* Sidebar navigation menu */
+        [data-testid="stSidebar"] .nav-link {
+            border-radius: 12px !important;
+            margin: 6px 0 !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        [data-testid="stSidebar"] .nav-link.active {
+            background-color: #FF5722 !important;
+            color: white !important;
+            box-shadow: 0px 3px 6px rgba(0,0,0,0.1) !important;
+        }
+        
+        [data-testid="stSidebar"] .nav-link:hover:not(.active) {
+            background-color: rgba(255, 87, 34, 0.15) !important;
+            transform: translateY(-2px) !important;
+        }
+        
+        /* Logo container */
+        [data-testid="stSidebar"] > div:first-child {
+            background-color: transparent !important;
+            padding-bottom: 1rem !important;
+        }
+        
+        /* Horizontal separators */
+        [data-testid="stSidebar"] hr {
+            border-color: rgba(255, 87, 34, 0.3) !important;
+            margin: 1rem 0 !important;
+        }
+        
+        /* Main content styling */
         .main .block-container {
             background-color: white;
             padding: 2.5rem;
@@ -266,12 +406,6 @@ class ThemeProvider:
         
         h1, h2, h3 {
             color: #FF5722 !important;
-        }
-        
-        div[data-testid="stSidebar"] > div {
-            background-color: #FFCCBC !important;
-            border-radius: 12px;
-            padding: 15px;
         }
         </style>
         """, unsafe_allow_html=True)

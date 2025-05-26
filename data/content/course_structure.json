@@ -34,7 +34,7 @@
         ]
       },
       {
-        "title": "Mechanizmy mózgu w interakcjach społecznych",
+        "title": "🔄 Mechanizmy mózgu w interakcjach społecznych",
         "lessons": [
           {"title": "Współczucie jako narzędzie przywódcze"},
           {"title": "Jak mózg interpretuje zachowanie innych?"},
@@ -70,7 +70,7 @@
         ]
       },
       {
-        "title": "Błędy poznawcze w decyzjach",
+        "title": "🧩 Błędy poznawcze w decyzjach",
         "lessons": [
           {"title": "Jak błędy poznawcze kształtują decyzje liderów?"},
           {"title": "Wprowadzenie do biasów poznawczych"},
@@ -85,7 +85,7 @@
         ]
       },
       {
-        "title": "Neurologiczne aspekty zmiany i innowacji",
+        "title": "🚀 Neurologiczne aspekty zmiany i innowacji",
         "lessons": [
           {"title": "Jak mózg reaguje na zmiany?"},
           {"title": "Neuroplastyczność a zdolność do adaptacji"},
@@ -106,7 +106,7 @@
     "title": "Psychologia i motywacja w przywództwie",
     "modules": [
       {
-        "title": "Motywowanie siebie i innych",
+        "title": "🔥 Motywowanie siebie i innych",
         "lessons": [
           {"title": "Jak neurobiologia wspomaga motywowanie innych?"},
           {"title": "Mózg a długoterminowa motywacja"},
@@ -121,7 +121,7 @@
         ]
       },
       {
-        "title": "Neurobiologia stresu w przywództwie",
+        "title": "⚡ Neurobiologia stresu w przywództwie",
         "lessons": [
           {"title": "Jak stres wpływa na decyzje liderów?"},
           {"title": "Mechanizmy neurobiologiczne stresu"},
@@ -136,7 +136,7 @@
         ]
       },
       {
-        "title": "Rola emocji w przywództwie",
+        "title": "❤️ Rola emocji w przywództwie",
         "lessons": [
           {"title": "Jak emocje lidera wpływają na zespół?"},
           {"title": "Inteligencja emocjonalna w przywództwie"},
@@ -148,6 +148,108 @@
           {"title": "Jak radzić sobie z emocjonalnym stresem?"},
           {"title": "Zarządzanie emocjami w trudnych rozmowach"},
           {"title": "Zrównoważenie emocji w pracy lidera"}
+        ]
+      }
+    ]
+  },
+  {
+    "emoji": "💪",
+    "title": "Praktyczne aspekty neuroprzywództwa",
+    "modules": [
+      {
+        "title": "🛡️ Budowanie odporności lidera",
+        "lessons": [
+          {"title": "Odporność psychiczna jako fundament przywództwa"},
+          {"title": "Jak tworzyć odporność organizacyjną?"},
+          {"title": "Sposoby radzenia sobie z kryzysami"},
+          {"title": "Adaptacja w zmieniającym się środowisku rynkowym"},
+          {"title": "Jak radzić sobie z presją?"},
+          {"title": "Praca nad odpornością emocjonalną"},
+          {"title": "Model Kintsugi w przywództwie"},
+          {"title": "Przekształcanie porażek w doświadczenia"},
+          {"title": "Rozwój osobisty lidera a jego odporność"},
+          {"title": "Neurobiologia procesów regeneracyjnych"}
+        ]
+      },
+      {
+        "title": "⚙️ Efektywność przywódcza w praktyce",
+        "lessons": [
+          {"title": "Neuroprzywództwo w codziennej pracy lidera"},
+          {"title": "Jak skutecznie delegować zadania?"},
+          {"title": "Trening wydajności zespołu"},
+          {"title": "Neurobiologia skutecznej komunikacji"},
+          {"title": "Jak utrzymać motywację zespołu?"},
+          {"title": "Podejmowanie decyzji w trudnych sytuacjach"},
+          {"title": "Jak analizować wyniki organizacji z perspektywy neuroprzywództwa?"},
+          {"title": "Przekształcanie organizacji pod kątem neurobiologicznym"},
+          {"title": "Zastosowanie neuroprzywództwa w kulturze organizacyjnej"},
+          {"title": "Monitorowanie efektywności liderów w firmie"}
+        ]
+      },
+      {
+        "title": "🌐 Neuroprzywództwo w kontekście globalnym",
+        "lessons": [
+          {"title": "Neurobiologia przywództwa w kontekście globalnym"},
+          {"title": "Wyzwania dla liderów w międzynarodowych firmach"},
+          {"title": "Zarządzanie różnorodnością kulturową w neuroprzywództwie"},
+          {"title": "Rozwój liderów w międzynarodowych środowiskach"},
+          {"title": "Jak neuroprzywództwo wpływa na zarządzanie globalnym zespołem?"},
+          {"title": "Neuroprzywództwo a międzynarodowe wyzwania"},
+          {"title": "Efektywność w różnych kulturach: jak neurobiologia kształtuje przywództwo?"},
+          {"title": "Neuroprzywództwo w obliczu globalnych kryzysów"},
+          {"title": "Jak różnice kulturowe wpływają na decyzje liderów?"},
+          {"title": "Globalne wyzwania neuroprzywództwa: innowacje i adaptacja"}
+        ]
+      }
+    ]
+  },
+  {
+    "emoji": "🚀",
+    "title": "Przyszłość neuroprzywództwa",
+    "modules": [
+      {
+        "title": "🔮 Wyzwania przyszłości dla liderów",
+        "lessons": [
+          {"title": "Neuroprzywództwo a nowoczesne technologie"},
+          {"title": "Wpływ sztucznej inteligencji na przywództwo"},
+          {"title": "Technologie wspierające procesy decyzyjne"},
+          {"title": "Jak neuroprzywództwo pomoże liderom radzić sobie z cyfrową transformacją?"},
+          {"title": "Jakie wyzwania czekają liderów w 2030 roku?"},
+          {"title": "Neuroprzywództwo w kontekście przyszłych zmian gospodarczych"},
+          {"title": "Jak przygotować liderów na przyszłe kryzysy?"},
+          {"title": "Neurobiologia w erze globalizacji"},
+          {"title": "Jakie umiejętności będą kluczowe dla liderów w przyszłości?"},
+          {"title": "Nowe narzędzia neuroprzywództwa"}
+        ]
+      },
+      {
+        "title": "🧠 Praca z umysłem lidera",
+        "lessons": [
+          {"title": "Praca nad mentalnością lidera"},
+          {"title": "Trening mózgu liderów: jak rozwijać elastyczność?"},
+          {"title": "Neuroplastyczność w służbie przywództwa"},
+          {"title": "Jak wytrenować mózg do podejmowania lepszych decyzji?"},
+          {"title": "Trening odporności psychicznej lidera"},
+          {"title": "Jak wykorzystać mózg lidera w codziennej pracy?"},
+          {"title": "Współczesne techniki treningowe w neuroprzywództwie"},
+          {"title": "Procesy decyzyjne a neurobiologia przywództwa"},
+          {"title": "Trening decyzyjności w kontekście neurobiologicznym"},
+          {"title": "Jak rozwiązywać problemy z podejmowaniem decyzji?"}
+        ]
+      },
+      {
+        "title": "🌟 Ostateczna transformacja lidera",
+        "lessons": [
+          {"title": "Jak stać się liderem neuroprzywództwa?"},
+          {"title": "Przemiany liderów: jak rozwijać swoje talenty przywódcze?"},
+          {"title": "Model lidera przyszłości"},
+          {"title": "Transformacja osobista lidera"},
+          {"title": "Przywództwo a etyka: neurobiologia moralności"},
+          {"title": "Jak rozwijać współczucie w roli lidera?"},
+          {"title": "Neuroprzywództwo a kształtowanie kultury organizacyjnej"},
+          {"title": "Neurobiologia w budowaniu liderów przyszłości"},
+          {"title": "Rozwój lidera w erze sztucznej inteligencji"},
+          {"title": "Jak neuroprzywództwo zmienia przyszłość organizacji?"}
         ]
       }
     ]

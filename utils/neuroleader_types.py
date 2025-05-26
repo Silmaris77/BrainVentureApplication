@@ -57,7 +57,7 @@ class NeuroleaderTypes:
         return self.types_data
     
     def get_type_by_id(self, type_id):
-        """Zwraca szczegóły konkretnego typu neuroliderskiego."""
+        """Zwraca szczegóły konkretnego typu neurolidera."""
         for type_info in self.types_data:
             if type_info["id"] == type_id:
                 return type_info
@@ -172,7 +172,7 @@ class NeuroleaderTypes:
             # Wczytaj aktualne dane użytkownika
             user_data = self._load_user_data()
             
-            # Dodaj lub zaktualizuj dane testu neuroliderskiego
+            # Dodaj lub zaktualizuj dane testu neurolidera
             if "neuroleader_tests" not in user_data:
                 user_data["neuroleader_tests"] = []
             
@@ -304,7 +304,7 @@ class NeuroleaderTypes:
         ax.set_yticklabels(['1', '2', '3', '4', '5'])
         
         # Dodaj tytuł
-        plt.title("Profil Neuroliderski", size=15, pad=20)
+        plt.title("Profil neurolidera", size=15, pad=20)
         
         # Wyświetl wykres
         st.pyplot(fig)
@@ -377,10 +377,10 @@ class NeuroleaderTypes:
         
     def get_resources_for_type(self, type_id):
         """
-        Zwraca listę zalecanych zasobów dla danego typu neuroliderskiego.
+        Zwraca listę zalecanych zasobów dla danego typu neurolidera.
         
         Args:
-            type_id: ID typu neuroliderskiego
+            type_id: ID typu neurolidera
             
         Returns:
             dict: Słownik z zasobami i materiałami dla danego typu

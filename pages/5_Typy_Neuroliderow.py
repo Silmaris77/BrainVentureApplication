@@ -145,7 +145,7 @@ with tab2:
     else:
         # Show introduction to the test
         st.markdown("""
-        Ten test pomoże Ci odkryć Twój dominujący typ neuroliderski oraz zrozumieć, jak Twój mózg 
+        Ten test pomoże Ci odkryć Twój dominujący typ neurolidera oraz zrozumieć, jak Twój mózg 
         wpływa na Twój styl przywództwa.
         
         Test składa się z 30 pytań i zajmie około 10-15 minut.
@@ -157,7 +157,7 @@ with tab2:
 
 # Tab 3: Twój Profil
 with tab3:
-    st.markdown("# Twój Profil Neuroliderski")
+    st.markdown("# Twój Profil Neurolidera")
     
     # Zmienna do kontrolowania przepływu
     should_display_results = False
@@ -204,7 +204,7 @@ with tab3:
             # Sprawdź czy dominant_type został poprawnie zidentyfikowany
             if not error_occurred and not dominant_type:
                 error_occurred = True
-                st.error("Nie udało się załadować informacji o dominującym typie neuroliderskim.")
+                st.error("Nie udało się załadować informacji o dominującym typie neurolidera.")
                 if st.button("Wykonaj test ponownie"):
                     st.session_state.test_results = None
                     go_to_test()
@@ -226,7 +226,7 @@ with tab3:
         st.markdown(dominant_type["short_description"])
         
         # Wykres radarowy wyników
-        st.markdown("### Twój profil neuroliderski")
+        st.markdown("### Twój profil neurolidera")
         neuroleader_manager.render_radar_chart(results)
         
         # Wyświetl informacje o drugorzędnym typie jeśli jest dostępny
