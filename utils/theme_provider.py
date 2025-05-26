@@ -5,6 +5,7 @@ class UITheme(Enum):
     MATERIAL3 = "material3"
     FLUENT = "fluent"
     DEFAULT = "default"
+    NEURO = "neuro"
 
 class ThemeProvider:
     @staticmethod
@@ -16,6 +17,71 @@ class ThemeProvider:
             st.session_state.layout = "material3"
         if "theme_just_changed" not in st.session_state:
             st.session_state.theme_just_changed = False
+        
+        # Add JavaScript to check localStorage
+        st.markdown(
+            """
+            <script>
+            function syncThemeWithStreamlit() {
+                // Get theme from localStorage
+                const storedTheme = localStorage.getItem('brainventure_theme');
+                const storedLayout = localStorage.getItem('brainventure_layout');
+                
+                // Log for debugging
+                console.log("Stored theme:", storedTheme);
+                console.log("Stored layout:", storedLayout);
+                
+                // We'll use a hidden element to communicate with Streamlit
+                const themeInput = document.createElement('input');
+                themeInput.type = 'hidden';
+                themeInput.id = 'theme-storage-sync';
+                themeInput.value = JSON.stringify({
+                    theme: storedTheme || 'light',
+                    layout: storedLayout || 'material3'
+                });
+                document.body.appendChild(themeInput);
+            }
+            
+            // Run on page load
+            document.addEventListener('DOMContentLoaded', syncThemeWithStreamlit);
+            </script>
+            """,
+            unsafe_allow_html=True
+        )
+    
+    @staticmethod
+    def set_layout(layout_name):
+        """Set the layout theme and persist it"""
+        st.session_state.layout = layout_name
+        st.session_state.theme_just_changed = True
+        
+        # Add JavaScript to store in localStorage
+        st.markdown(
+            f"""
+            <script>
+            localStorage.setItem('brainventure_layout', '{layout_name}');
+            console.log("Layout set to:", '{layout_name}');
+            </script>
+            """,
+            unsafe_allow_html=True
+        )
+    
+    @staticmethod
+    def set_theme(theme_name):
+        """Set the color theme and persist it"""
+        st.session_state.theme = theme_name
+        st.session_state.theme_just_changed = True
+        
+        # Add JavaScript to store in localStorage
+        st.markdown(
+            f"""
+            <script>
+            localStorage.setItem('brainventure_theme', '{theme_name}');
+            console.log("Theme set to:", '{theme_name}');
+            </script>
+            """,
+            unsafe_allow_html=True
+        )
     
     @staticmethod
     def apply_theme():
@@ -29,11 +95,15 @@ class ThemeProvider:
         else:
             ThemeProvider._apply_dark_theme()
         
-        # Apply layout theme (material3/fluent)
+        # Apply layout theme
         if layout == "material3":
             ThemeProvider._apply_material3_layout()
-        else:
+        elif layout == "fluent":
             ThemeProvider._apply_fluent_layout()
+        elif layout == "neuro":
+            ThemeProvider._apply_neuro_layout()
+        else:
+            ThemeProvider._apply_default_layout()
     
     @staticmethod
     def _apply_light_theme():
@@ -117,6 +187,26 @@ class ThemeProvider:
             border-radius: 12px;
             box-shadow: 0 1px 2px var(--shadow-color);
         }
+        
+        /* Sidebar styling */
+        [data-testid="stSidebar"] {
+            background-color: var(--secondary-background);
+            border-radius: 16px;
+            margin: 10px;
+            padding: 20px;
+        }
+        
+        /* Sidebar navigation menu */
+        [data-testid="stSidebar"] .nav-link {
+            border-radius: 12px !important;
+            margin: 4px 0 !important;
+            transition: all 0.2s ease !important;
+        }
+        
+        [data-testid="stSidebar"] .nav-link.active {
+            background-color: var(--highlight-color) !important;
+            color: white !important;
+        }
         </style>
         """, unsafe_allow_html=True)
     
@@ -156,5 +246,123 @@ class ThemeProvider:
             border: 1px solid var(--border-color);
             border-radius: 3px;
         }
+        
+        /* Sidebar styling */
+        [data-testid="stSidebar"] {
+            background-color: var(--secondary-background);
+            border-right: 1px solid var(--border-color);
+            padding: 20px;
+        }
+        
+        /* Sidebar navigation menu */
+        [data-testid="stSidebar"] .nav-link {
+            border-radius: 2px !important;
+            margin: 2px 0 !important;
+        }
+        
+        [data-testid="stSidebar"] .nav-link.active {
+            background-color: var(--highlight-color) !important;
+            color: white !important;
+        }
         </style>
         """, unsafe_allow_html=True)
+    
+    @staticmethod
+    def _apply_neuro_layout():
+        """Apply Neuro layout style"""
+        st.markdown("""
+        <style>
+        /* Neuro Design System */
+        .stButton > button {
+            border-radius: 30px;
+            padding: 10px 25px;
+            background: linear-gradient(145deg, #f0f0f0, #e6e6e6);
+            box-shadow: 5px 5px 10px #d1d1d1, -5px -5px 10px #ffffff;
+            border: none;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+        
+        .stButton > button:hover {
+            box-shadow: 3px 3px 6px #d1d1d1, -3px -3px 6px #ffffff;
+            transform: translateY(-2px);
+        }
+        
+        .stButton > button:active {
+            box-shadow: inset 5px 5px 10px #d1d1d1, inset -5px -5px 10px #ffffff;
+        }
+        
+        div.stTabs [data-baseweb="tab-list"] {
+            background: var(--secondary-background);
+            border-radius: 20px;
+            padding: 5px;
+        }
+        
+        div.stTabs [data-baseweb="tab"] {
+            border-radius: 15px;
+            padding: 10px 20px;
+            margin: 0 5px;
+            transition: all 0.2s ease;
+        }
+        
+        div.stTabs [aria-selected="true"] {
+            background: linear-gradient(145deg, #f0f0f0, #e6e6e6);
+            box-shadow: 3px 3px 6px #d1d1d1, -3px -3px 6px #ffffff;
+        }
+        
+        .stExpander {
+            border-radius: 20px;
+            background: var(--background-color);
+            box-shadow: 5px 5px 10px #d1d1d1, -5px -5px 10px #ffffff;
+            border: none;
+            overflow: hidden;
+        }
+        
+        /* Sidebar styling */
+        [data-testid="stSidebar"] {
+            background-color: var(--background-color);
+            border-radius: 20px;
+            margin: 10px;
+            padding: 20px;
+            box-shadow: inset 3px 3px 7px var(--shadow-color), inset -3px -3px 7px #ffffff;
+        }
+        
+        /* Sidebar navigation menu */
+        [data-testid="stSidebar"] .nav-link {
+            border-radius: 15px !important;
+            margin: 8px 0 !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 3px 3px 7px var(--shadow-color), -3px -3px 7px rgba(255,255,255,0.8);
+        }
+        
+        [data-testid="stSidebar"] .nav-link.active {
+            background-color: var(--highlight-color) !important;
+            color: white !important;
+            box-shadow: inset 3px 3px 7px rgba(0,0,0,0.2), inset -3px -3px 7px rgba(255,255,255,0.2);
+        }
+        </style>
+        """, unsafe_allow_html=True)
+    
+    @staticmethod
+    def _apply_default_layout():
+        """Apply default Streamlit layout style"""
+        st.markdown("""
+        <style>
+        /* Reset to default Streamlit styles */
+        /* This is intentionally minimal to let Streamlit's default styles take effect */
+        </style>
+        """, unsafe_allow_html=True)
+    
+    @staticmethod
+    def get_current_theme():
+        """Get the current UI theme from session state"""
+        layout = st.session_state.get("layout", "material3")
+        
+        if layout == "material3":
+            return UITheme.MATERIAL3
+        elif layout == "fluent":
+            return UITheme.FLUENT
+        elif layout == "neuro":
+            return UITheme.NEURO
+        else:
+            return UITheme.DEFAULT

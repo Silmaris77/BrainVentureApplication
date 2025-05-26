@@ -211,53 +211,35 @@ def create_horizontal_submenu(title, options, icons, default_index=0):
     return selected
 
 def create_layout_switcher():
-    """
-    Creates a layout switcher interface in the sidebar.
-    Allows users to switch between different UI layouts (Material3, Fluent, etc.)
-    """
-    theme = get_current_theme()
-    layout = get_current_layout()
+    """Create UI for switching between different UI layouts."""
+    st.sidebar.markdown("### Zmień layout")
     
-    st.markdown(f"Aktualny motyw: **{theme}**")
-    st.markdown(f"Aktualny układ: **{layout}**")
+    # Get current layout
+    current_layout = st.session_state.get("layout", "material3")
     
-    # Create container with 2 rows of 2 buttons for better UI
-    row1, row2 = st.columns(2), st.columns(2)
+    # Create layout selector
+    col1, col2, col3 = st.sidebar.columns(3)
     
-    # First row - Material3 and Fluent
-    with row1[0]:
-        if st.button("Material", use_container_width=True, 
-                   type="primary" if layout == "material3" else "secondary",
-                   key="btn_material"):
-            # ThemeProvider.set_theme(UITheme.MATERIAL3)  # stara wersja
-            st.session_state.layout = "material3"  # nowa wersja
-            st.session_state.theme_just_changed = True
-            st.rerun()
-            
-    with row1[1]:
-        if st.button("Fluent", use_container_width=True, 
-                   type="primary" if layout == "fluent" else "secondary",
-                   key="btn_fluent"):
-            # ThemeProvider.set_theme(UITheme.FLUENT)  # stara wersja
-            st.session_state.layout = "fluent"  # nowa wersja
-            st.session_state.theme_just_changed = True
+    with col1:
+        # Dodany unikalny klucz "material3_layout_btn"
+        if st.button("Material 3", use_container_width=True, 
+                    type="primary" if current_layout == "material3" else "secondary",
+                    key="material3_layout_btn"):
+            ThemeProvider.set_layout("material3")
             st.rerun()
     
-    # Second row - Default and Neuro
-    with row2[0]:
-        if st.button("Default", use_container_width=True, 
-                   type="primary" if layout == "default" else "secondary",
-                   key="btn_default"):
-            # ThemeProvider.set_theme(UITheme.DEFAULT)  # stara wersja
-            st.session_state.layout = "default"  # nowa wersja
-            st.session_state.theme_just_changed = True
+    with col2:
+        # Dodany unikalny klucz "fluent_layout_btn"
+        if st.button("Fluent", use_container_width=True,
+                    type="primary" if current_layout == "fluent" else "secondary",
+                    key="fluent_layout_btn"):
+            ThemeProvider.set_layout("fluent")
             st.rerun()
-            
-    with row2[1]:
-        if st.button("Neuro", use_container_width=True, 
-                   type="primary" if layout == "neuro" else "secondary",
-                   key="btn_neuro"):
-            # ThemeProvider.set_theme(UITheme.NEURO)  # stara wersja
-            st.session_state.layout = "neuro"  # nowa wersja
-            st.session_state.theme_just_changed = True
+    
+    with col3:
+        # Dodany unikalny klucz "neuro_layout_btn"
+        if st.button("Neuro", use_container_width=True,
+                    type="primary" if current_layout == "neuro" else "secondary",
+                    key="neuro_layout_btn"):
+            ThemeProvider.set_layout("neuro")
             st.rerun()
