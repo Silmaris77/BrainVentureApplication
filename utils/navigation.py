@@ -4,6 +4,7 @@ Navigation utilities for the BrainVenture app.
 import streamlit as st
 import os
 from streamlit_option_menu import option_menu
+from utils.theme_provider import ThemeProvider, UITheme
 
 def hide_streamlit_navigation():
     """Hide the default Streamlit navigation sidebar and top menu."""
@@ -220,6 +221,10 @@ def create_sidebar_navigation(current_page=None):
                 }
             )
             
+        # Add theme layout switcher at the bottom of the sidebar
+        st.markdown("---")
+        create_layout_switcher()
+        
         st.markdown("---")
         st.markdown("© 2025 BrainVenture")
 
@@ -273,3 +278,49 @@ def create_horizontal_submenu(title, options, icons, default_index=0):
     )
     
     return selected
+
+def create_layout_switcher():
+    """
+    Creates a layout switcher interface in the sidebar.
+    Allows users to switch between different UI layouts (Material3, Fluent, etc.)
+    """
+    # Initialize ui_theme if not present in session_state
+    ThemeProvider.initialize()
+    
+    st.markdown("### Wybierz layout (układ)")
+    
+    # Create container with 2 rows of 2 buttons for better UI
+    row1, row2 = st.columns(2), st.columns(2)
+    
+    # Debug: show current theme
+    st.markdown(f"Current theme: **{ThemeProvider.get_current_theme().name}**")
+    
+    # First row - Material3 and Fluent
+    with row1[0]:
+        if st.button("Material", use_container_width=True, 
+                   type="primary" if ThemeProvider.get_current_theme() == UITheme.MATERIAL3 else "secondary",
+                   key="btn_material"):
+            ThemeProvider.set_theme(UITheme.MATERIAL3)
+            st.rerun()
+            
+    with row1[1]:
+        if st.button("Fluent", use_container_width=True, 
+                   type="primary" if ThemeProvider.get_current_theme() == UITheme.FLUENT else "secondary",
+                   key="btn_fluent"):
+            ThemeProvider.set_theme(UITheme.FLUENT)
+            st.rerun()
+    
+    # Second row - Default and Neuro
+    with row2[0]:
+        if st.button("Default", use_container_width=True, 
+                   type="primary" if ThemeProvider.get_current_theme() == UITheme.DEFAULT else "secondary",
+                   key="btn_default"):
+            ThemeProvider.set_theme(UITheme.DEFAULT)
+            st.rerun()
+            
+    with row2[1]:
+        if st.button("Neuro", use_container_width=True, 
+                   type="primary" if ThemeProvider.get_current_theme() == UITheme.NEURO else "secondary",
+                   key="btn_neuro"):
+            ThemeProvider.set_theme(UITheme.NEURO)
+            st.rerun()

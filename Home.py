@@ -1,6 +1,8 @@
 import streamlit as st
 import os
 import sys
+from utils.theme_provider import ThemeProvider
+from components.theme_switcher import initialize_theme as initialize_color_theme
 
 # Set page config - MUSI być pierwszą komendą Streamlit!
 st.set_page_config(
@@ -26,6 +28,16 @@ else:
 # Initialize current_page in session state
 if "current_page" not in st.session_state:
     st.session_state["current_page"] = "Home"
+
+# Initialize both theming systems
+initialize_color_theme()  # Initialize color theme (jasny, ciemny, etc.)
+ThemeProvider.initialize() # Initialize layout theme (Material3, Fluent, etc.)
+
+# Apply the current theme
+ThemeProvider.apply_theme() # This will apply both color and layout themes
+
+# Add debug info about current theme
+st.sidebar.text(f"Active theme: {ThemeProvider.get_current_theme().name}")
 
 # Main dashboard content
 st.title("🧠 BrainVenture - Program dla Neuroliderów")

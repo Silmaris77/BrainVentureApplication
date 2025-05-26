@@ -18,13 +18,24 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.ui import card, grid
 from utils.navigation import hide_streamlit_navigation, create_sidebar_navigation
 from components.theme_switcher import initialize_theme, create_theme_switcher, get_current_theme
+from utils.theme_provider import ThemeProvider
 from utils.neuroleader_types import NeuroleaderTypes  # Używamy zaktualizowanej klasy neuroliderów
 
 # Hide default Streamlit navigation
 hide_streamlit_navigation()
 
-# Initialize and apply theme
-initialize_theme()
+# Initialize and apply themes
+initialize_theme()  # Inicjalizacja kolorów (jasny, ciemny, etc.)
+ThemeProvider.initialize()  # Inicjalizacja layoutu (Material3, Fluent, etc.)
+
+# Apply combined theme
+ThemeProvider.apply_theme()
+
+# Debug information
+if st.session_state.get("theme_just_changed", False):
+    st.info("Theme has been changed! Reloading...")
+    # Reset the flag
+    st.session_state.theme_just_changed = False
 
 # Function to load course structure
 def load_course_structure():

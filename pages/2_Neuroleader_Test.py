@@ -1,4 +1,8 @@
 import streamlit as st
+
+# Page title for sidebar - MUST BE FIRST STREAMLIT COMMAND
+st.set_page_config(page_title="Test Neuroliderstwa", page_icon="📋")
+
 import pandas as pd
 import numpy as np
 import json
@@ -9,16 +13,25 @@ import matplotlib.pyplot as plt
 # Add the project root to the path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from utils.navigation import create_sidebar_navigation, hide_streamlit_navigation
+from components.theme_switcher import initialize_theme
+from utils.theme_provider import ThemeProvider
 from utils.ui import card
 
-# Page title for sidebar
-st.set_page_config(page_title="Test Neuroliderstwa", page_icon="📋")
-
-# Import navigation utilities
-from utils.navigation import hide_streamlit_navigation, create_sidebar_navigation, create_horizontal_submenu
-
-# Hide default navigation
+# Hide default Streamlit navigation
 hide_streamlit_navigation()
+
+# Initialize themes
+initialize_theme()  # Kolory (jasny, ciemny, itp.)
+ThemeProvider.initialize()  # Layout (Material3, Fluent, itp.)
+
+# Apply combined theme
+ThemeProvider.apply_theme()
+
+# Import additional navigation utilities
+from utils.navigation import create_horizontal_submenu
+
+# Navigation is already hidden above
 
 # Apply custom CSS
 css_path = os.path.join("static", "css", "style.css")

@@ -1,4 +1,8 @@
 import streamlit as st
+
+# Page title for sidebar - MUST BE FIRST STREAMLIT COMMAND
+st.set_page_config(page_title="Profil użytkownika", page_icon="👤")
+
 import json
 import os
 import sys
@@ -7,14 +11,22 @@ from datetime import datetime
 # Add the project root to the path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Page title for sidebar
-st.set_page_config(page_title="Profil użytkownika", page_icon="👤")
+from utils.navigation import create_sidebar_navigation, hide_streamlit_navigation, create_horizontal_submenu
+from components.theme_switcher import initialize_theme
+from utils.theme_provider import ThemeProvider
 
-# Import navigation utilities
-from utils.navigation import hide_streamlit_navigation, create_sidebar_navigation, create_horizontal_submenu
-
-# Hide default navigation
+# Hide default Streamlit navigation
 hide_streamlit_navigation()
+
+# Initialize themes
+initialize_theme()  # Kolory (jasny, ciemny, itp.)
+ThemeProvider.initialize()  # Layout (Material3, Fluent, itp.)
+
+# Apply combined theme
+ThemeProvider.apply_theme()
+
+# Remove duplicate call to hide_streamlit_navigation()
+# hide_default_navigation()
 
 # Apply custom CSS
 css_path = os.path.join("static", "css", "style.css")

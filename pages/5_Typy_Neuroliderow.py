@@ -19,12 +19,17 @@ from utils.ui import card
 from utils.navigation import hide_streamlit_navigation, create_sidebar_navigation
 from components.theme_switcher import initialize_theme, create_theme_switcher, get_current_theme
 from utils.neuroleader_types import NeuroleaderTypes
+from utils.theme_provider import ThemeProvider
 
 # Hide default Streamlit navigation
 hide_streamlit_navigation()
 
-# Initialize and apply theme
-initialize_theme()
+# Initialize themes
+initialize_theme()  # Kolory (jasny, ciemny, itp.)
+ThemeProvider.initialize()  # Layout (Material3, Fluent, itp.)
+
+# Apply combined theme
+ThemeProvider.apply_theme()
 
 # Create sidebar navigation
 create_sidebar_navigation("Typy Neuroliderów")

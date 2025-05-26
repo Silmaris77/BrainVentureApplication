@@ -1,4 +1,8 @@
 import streamlit as st
+
+# Page title for sidebar - MUST BE FIRST STREAMLIT COMMAND
+st.set_page_config(page_title="Lekcje", page_icon="📚")
+
 import json
 import os
 import sys
@@ -6,13 +10,22 @@ import sys
 # Add the project root to the path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from utils.navigation import create_sidebar_navigation, hide_streamlit_navigation
+from components.theme_switcher import initialize_theme
+from utils.theme_provider import ThemeProvider
 from utils.ui import card, grid
 
-# Page title for sidebar
-st.set_page_config(page_title="Lekcje", page_icon="📚")
+# Hide default navigation
+hide_streamlit_navigation()
 
-# Import navigation utilities
-from utils.navigation import hide_streamlit_navigation, create_sidebar_navigation
+# Initialize themes
+initialize_theme()  # Kolory (jasny, ciemny, itp.)
+ThemeProvider.initialize()  # Layout (Material3, Fluent, itp.)
+
+# Apply combined theme
+ThemeProvider.apply_theme()
+
+# Navigation utilities are already imported above
 
 # Hide default navigation
 hide_streamlit_navigation()
